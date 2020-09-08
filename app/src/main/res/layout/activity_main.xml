@@ -1,18 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/textUserName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:ems="10"
+        android:hint="@string/labelUserName"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/textUserPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/labelUserPassword"
+        android:importantForAutofill="no"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/textUserPasswordRepeat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/labelUserPasswordRepeat"
+        android:importantForAutofill="no"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/labelEmail"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress" />
+
+    <TextView
+        android:id="@+id/textCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/labelTypeCard"
+        android:text="@string/labelTypeCard"
+        tools:text="@string/labelTypeCard" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupTypeCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButtonDebit"
+            android:layout_width="205dp"
+            android:layout_height="match_parent"
+            android:text="@string/labelRadioButtonDebit" />
+
+        <RadioButton
+            android:id="@+id/radioButtonCredit"
+            android:layout_width="205dp"
+            android:layout_height="match_parent"
+            android:text="@string/labelRadioButtonCredit" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/layoutCardNumber"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:orientation="horizontal"    >
+
+        <EditText
+            android:id="@+id/textCardNumber"
+            android:layout_width="358dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/labelCardNumber"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:maxLength="16" />
+
+        <EditText
+            android:id="@+id/textCardCCV"
+            android:layout_width="133dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/labelCardCCV"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:enabled="false"
+            android:maxLength="3"   />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textExpirationDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/labelExpirationDate" />
+
+    <LinearLayout
+        android:id="@+id/layoutExpirationDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/spinnerMonth"
+            android:layout_width="207dp"
+            android:layout_height="48dp"
+            android:entries="@array/labelMonth" />
+
+        <Spinner
+            android:id="@+id/spinnerYear"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/textCBU"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/labelCBU"
+        android:inputType="number"
+        android:maxLength="22"/>
+
+    <EditText
+        android:id="@+id/textAliasCBU"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/labelAliasCBU"
+        android:inputType="textPersonName"
+        android:maxLength="20"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textSwitchInitLoad"
+            android:layout_width="285dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/labelInitialLoad"
+            android:text="@string/labelInitialLoad"
+            tools:text="@string/labelInitialLoad" />
+
+        <Switch
+            android:id="@+id/switchInitialLoad"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutCreditAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textInitialLoad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/labelInitialCredit"
+            android:visibility = "gone" />
+
+        <TextView
+            android:id="@+id/creditLoad"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/labelInitLoad"
+            android:visibility = "gone" />
+    </LinearLayout>
+
+    <SeekBar
+        android:id="@+id/seekBarInitialCredit"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:max="1500"
+        android:visibility="gone" />
+
+    <CheckBox
+        android:id="@+id/checkBoxConditions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/labelCoditions" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="@string/labelBtnRegister" />
+
+</LinearLayout>
