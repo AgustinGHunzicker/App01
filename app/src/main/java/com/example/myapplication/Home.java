@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class Home extends AppCompatActivity {
 
@@ -28,14 +31,21 @@ public class Home extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menuOption1:
+                Intent pantallaRegistro = new Intent(this, MainActivity.class);
+                startActivity(pantallaRegistro);
+                Log.d("Tag1", "REGISTRARME");
                 break;
             case R.id.menuOption2:
+                Log.d("Tag2", "CREAR ITEM");
                 break;
             case R.id.menuOption3:
+                Log.d("Tag3","LISTA ITEMS");
                 break;
+            default:
+                //error desconocido
         }
         return super.onOptionsItemSelected(item);
     }

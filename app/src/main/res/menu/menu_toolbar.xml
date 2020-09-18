@@ -3,10 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menuOption1"
-        android:title="Registrarme"
         android:orderInCategory="1"
-        app:showAsAction="never"
-        />
+        android:title="Registrarme"
+        app:showAsAction="never" />
     <item
         android:id="@+id/menuOption2"
         android:title="Crear Ítem"
