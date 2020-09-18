@@ -13,6 +13,9 @@
         <activity android:name=".MainActivity"
             android:label="SignUp">
         </activity>
+        <activity android:name=".NuevoPlato"
+            android:label="SignUp">
+        </activity>
 
         <activity android:name=".Home">
             <intent-filter>

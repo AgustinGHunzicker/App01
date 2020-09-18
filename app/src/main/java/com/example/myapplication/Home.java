@@ -39,6 +39,8 @@ public class Home extends AppCompatActivity {
                 Log.d("Tag1", "REGISTRARME");
                 break;
             case R.id.menuOption2:
+                Intent pantallaNuevoPlato = new Intent(this, NuevoPlato.class);
+                startActivity(pantallaNuevoPlato);
                 Log.d("Tag2", "CREAR ITEM");
                 break;
             case R.id.menuOption3:

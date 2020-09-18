@@ -34,5 +34,10 @@
     <string name="labelInitLoad">0</string>
     <string name="ToastInvalidSpaces">Campos no validos</string>
     <string name="ToastSuccesfullTransaction">Carga exitosa</string>
-
+    <string name="laberNuevoPlato">Nuevo Plato</string>
+    <string name="labelTituloPlato">Título</string>
+    <string name="labelDescripcion">Descripción</string>
+    <string name="labelPrecio">Precio</string>
+    <string name="labelCalorias">Calorías</string>
+    <string name="btnGuardar">Guardar</string>
 </resources>
