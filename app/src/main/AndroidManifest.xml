@@ -10,13 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-            android:label="SignUp">
-        </activity>
-        <activity android:name=".NuevoPlato"
-            android:label="SignUp">
-        </activity>
-
+        <activity android:name=".PlateLogic.PlateRecyclerActivity"></activity>
+        <activity
+            android:name=".RegistrarUsuario"
+            android:label="SignUp" />
+        <activity
+            android:name=".NuevoPlate"
+            android:label="SignUp" />
         <activity android:name=".Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -17,10 +17,13 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.myapplication.R;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class RegistrarUsuario extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -227,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),R.string.ToastInvalidSpaces,Toast.LENGTH_LONG).show();
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),R.string.ToastSuccesfullTransaction,Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),R.string.ToastSuccessfulTransaction,Toast.LENGTH_LONG).show();
                 }
             }
         });

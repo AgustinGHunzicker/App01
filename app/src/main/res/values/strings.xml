@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <!-- Pantalla de registro de usuario -->
+    <string name="app_name">SendMeal</string>
     <string name="labelUserName">Nombre</string>
     <string name="labelUserPassword">Contraseña</string>
     <string name="labelUserPasswordRepeat">Repetir Contraseña</string>
@@ -29,15 +30,35 @@
     <string name="labelAliasCBU">Alias CBU</string>
     <string name="labelInitialLoad">Realizar carga inicial</string>
     <string name="labelInitialCredit">Credito inicial:" " </string>
-    <string name="labelCoditions">Acepto los terminos y condiciones</string>
+    <string name="labelConditions">Acepto los términos y condiciones</string>
     <string name="labelBtnRegister">Registrar</string>
     <string name="labelInitLoad">0</string>
-    <string name="ToastInvalidSpaces">Campos no validos</string>
-    <string name="ToastSuccesfullTransaction">Carga exitosa</string>
-    <string name="laberNuevoPlato">Nuevo Plato</string>
-    <string name="labelTituloPlato">Título</string>
-    <string name="labelDescripcion">Descripción</string>
-    <string name="labelPrecio">Precio</string>
-    <string name="labelCalorias">Calorías</string>
-    <string name="btnGuardar">Guardar</string>
+    <string name="ToastInvalidSpaces">Campos no válidos</string>
+    <string name="ToastSuccessfulTransaction">Carga exitosa</string>
+
+    <!-- Pantalla de inicio -->
+    <string name="labelWelcome">Bienvenido!</string>
+
+    <string name="menuRegister">Registarme</string>
+    <string name="menuCreateItem">Crear ítem</string>
+    <string name="menuItemsList">Lista de ítems</string>ç
+
+    <string name="activityRegister">REGISTRAR</string>
+    <string name="activityCreateItem">CREAR ITEM</string>
+    <string name="activityItemsList">LISTA DE ITEMS</string>
+
+    <!-- Pantalla de nuevo plato -->
+    <string name="labelNewPlate">Nuevo Plato</string>
+    <string name="labelTitlePlate">Título</string>
+    <string name="labelDescription">Descripción</string>
+    <string name="labelPrice">Precio</string>
+    <string name="labelCalories">Calorías</string>
+    <string name="btnSave">Guardar</string>
+    <string name="ToastInvalidSpacesPlate">Campos no válidos/incompletos</string>
+    <string name="ToastSuccessfulTransactionPlate">El plato ha sido creado con éxito</string>
+
+
+    <!-- Pantalla de visualizar los platos -->
+    <string name="btnVer">Ver</string>
+
 </resources>

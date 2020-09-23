@@ -1,15 +1,16 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+
+import com.example.myapplication.PlateLogic.PlateRecyclerActivity;
 
 public class Home extends AppCompatActivity {
 
@@ -20,8 +21,6 @@ public class Home extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbarActivityHome);
         setSupportActionBar(toolbar);
-
-
     }
 
     @Override
@@ -32,24 +31,30 @@ public class Home extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Resources res = getResources();
         switch (item.getItemId()){
             case R.id.menuOption1:
-                Intent pantallaRegistro = new Intent(this, MainActivity.class);
-                startActivity(pantallaRegistro);
-                Log.d("Tag1", "REGISTRARME");
+                //TODO cambiar
+                Intent registerScreen = new Intent(this, RegistrarUsuario.class);
+                startActivity(registerScreen);
+                String registrar = res.getString(R.string.activityRegister);
+                Log.d("Tag1", registrar);
                 break;
             case R.id.menuOption2:
-                Intent pantallaNuevoPlato = new Intent(this, NuevoPlato.class);
-                startActivity(pantallaNuevoPlato);
-                Log.d("Tag2", "CREAR ITEM");
+                Intent newPlateScreen = new Intent(this, NuevoPlate.class);
+                startActivity(newPlateScreen);
+                String createItem = res.getString(R.string.activityCreateItem);
+                Log.d("Tag2", createItem);
                 break;
             case R.id.menuOption3:
-                Log.d("Tag3","LISTA ITEMS");
+                Intent platesView = new Intent(this, PlateRecyclerActivity.class);
+                startActivity(platesView);
+                String itemsList = res.getString(R.string.activityItemsList);
+                Log.d("Tag3",itemsList);
                 break;
             default:
                 //error desconocido
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

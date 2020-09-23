@@ -4,8 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFC107"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:paddingStart="@dimen/space_small"
+    android:paddingEnd="@dimen/space_small"
+    tools:context=".RegistrarUsuario">
 
     <EditText
         android:id="@+id/textUserName"
@@ -59,7 +62,7 @@
 
         <RadioButton
             android:id="@+id/radioButtonDebit"
-            android:layout_width="205dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/labelRadioButtonDebit" />
 
@@ -73,8 +76,8 @@
     <LinearLayout
         android:id="@+id/layoutCardNumber"
         android:layout_width="match_parent"
-        android:layout_height="51dp"
-        android:orientation="horizontal"    >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/textCardNumber"
@@ -89,15 +92,15 @@
 
         <EditText
             android:id="@+id/textCardCCV"
-            android:layout_width="133dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:ems="10"
+            android:enabled="false"
             android:hint="@string/labelCardCCV"
             android:importantForAutofill="no"
             android:inputType="number"
-            android:enabled="false"
-            android:maxLength="3"   />
+            android:maxLength="3" />
     </LinearLayout>
 
     <TextView
@@ -114,14 +117,14 @@
 
         <Spinner
             android:id="@+id/spinnerMonth"
-            android:layout_width="207dp"
-            android:layout_height="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:entries="@array/labelMonth" />
 
         <Spinner
             android:id="@+id/spinnerYear"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1" />
 
     </LinearLayout>
@@ -134,7 +137,7 @@
         android:ems="10"
         android:hint="@string/labelCBU"
         android:inputType="number"
-        android:maxLength="22"/>
+        android:maxLength="22" />
 
     <EditText
         android:id="@+id/textAliasCBU"
@@ -144,7 +147,7 @@
         android:ems="10"
         android:hint="@string/labelAliasCBU"
         android:inputType="textPersonName"
-        android:maxLength="20"/>
+        android:maxLength="20" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -161,7 +164,7 @@
 
         <Switch
             android:id="@+id/switchInitialLoad"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
@@ -178,7 +181,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/labelInitialCredit"
-            android:visibility = "gone" />
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/creditLoad"
@@ -186,13 +189,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/labelInitLoad"
-            android:visibility = "gone" />
+            android:visibility="gone" />
     </LinearLayout>
 
     <SeekBar
         android:id="@+id/seekBarInitialCredit"
         android:layout_width="match_parent"
-        android:layout_height="47dp"
+        android:layout_height="wrap_content"
         android:max="1500"
         android:visibility="gone" />
 
@@ -200,10 +203,11 @@
         android:id="@+id/checkBoxConditions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/labelCoditions" />
+        android:text="@string/labelConditions" />
 
     <Button
         android:id="@+id/btnRegister"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:enabled="false"
