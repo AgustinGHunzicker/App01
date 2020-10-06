@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFC107"
+    android:gravity="start"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/space_small"
+    android:paddingEnd="@dimen/space_small">
+
+    <TextView
+        android:id="@+id/textNewPlate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_large"
+        android:text="@string/labelNewPlate"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/textTitlePlate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_large"
+        android:ems="10"
+        android:hint="@string/labelTitlePlate"
+        android:importantForAutofill="no"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/textDescriptionPlate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_large"
+        android:gravity="fill_horizontal"
+        android:hint="@string/labelDescription"
+        android:importantForAutofill="no"
+        android:inputType="text" />
+
+    <LinearLayout
+        android:id="@+id/layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_large"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/textPricePlate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/labelPrice"
+            android:importantForAutofill="no"
+            android:inputType="number|numberDecimal" />
+
+        <EditText
+            android:id="@+id/textCaloriesPlate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/labelCalories"
+            android:importantForAutofill="no"
+            android:inputType="number" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSave"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnSave" />
+
+
+</LinearLayout>
