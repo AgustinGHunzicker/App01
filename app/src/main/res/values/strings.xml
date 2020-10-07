@@ -64,8 +64,9 @@
     <string name="newPedido">Nuevo Pedido</string>
 
     <!-- Pantalla de Nuevos Pedidos -->
+    <string name="labelNuevoPedido">Nuevo Pedido</string>
     <string name="adress">Dirección de Envío</string>
     <string name="labelSend">Envío</string>
     <string name="labelTakeAway">Take Away</string>
-    <string name="btnAddPlate">Agregar Platos</string>
+    <string name="btnAddPlate">AGREGAR PLATOS A PEDIDO</string>
 </resources>
