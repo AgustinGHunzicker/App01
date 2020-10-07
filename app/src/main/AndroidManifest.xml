@@ -17,6 +17,10 @@
         <activity
             android:name=".NuevoPlate"
             android:label="SignUp" />
+        <activity
+            android:name=".PedidoActivity"
+            android:label="SignUp" />
+
         <activity android:name=".Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

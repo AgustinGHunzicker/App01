@@ -58,7 +58,14 @@
     <string name="ToastSuccessfulTransactionPlate">El plato ha sido creado con éxito</string>
 
 
+
     <!-- Pantalla de visualizar los platos -->
     <string name="btnVer">Ver</string>
+    <string name="newPedido">Nuevo Pedido</string>
 
+    <!-- Pantalla de Nuevos Pedidos -->
+    <string name="adress">Dirección de Envío</string>
+    <string name="labelSend">Envío</string>
+    <string name="labelTakeAway">Take Away</string>
+    <string name="btnAddPlate">Agregar Platos</string>
 </resources>
