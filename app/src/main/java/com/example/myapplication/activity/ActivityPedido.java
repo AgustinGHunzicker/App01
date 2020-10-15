@@ -1,4 +1,4 @@
-package com.example.myapplication.PlateLogic;
+package com.example.myapplication.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,19 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import com.example.myapplication.PlateLogic.PlateRecyclerActivity;
 import com.example.myapplication.R;
 
-import java.time.LocalDateTime;
 
-
-public class PedidoActivity extends AppCompatActivity {
+public class ActivityPedido extends AppCompatActivity {
 
     EditText textEmailAddress;
     RadioButton radioButtonEnvio;
@@ -53,7 +48,7 @@ public class PedidoActivity extends AppCompatActivity {
         btnAddPlate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), PlateRecyclerActivity.class);
+                Intent i = new Intent(getApplicationContext(), ActivityPlateRecycler.class);
                 i.putExtra("addButtonAsk", true);
                 startActivityForResult(i, REQUEST_CODE);
             }

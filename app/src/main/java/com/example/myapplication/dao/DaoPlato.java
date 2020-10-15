@@ -1,13 +1,13 @@
-package com.example.myapplication.PlateLogic;
+package com.example.myapplication.dao;
 
 import com.example.myapplication.model.Plato;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlatesDao {
+public class DaoPlato {
 
-    public PlatesDao(){}
+    public DaoPlato(){}
 
     public List<Plato> list(){
         //TODO implementar dao

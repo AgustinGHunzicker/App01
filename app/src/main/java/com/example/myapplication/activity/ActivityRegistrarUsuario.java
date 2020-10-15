@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.activity;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +23,7 @@ import com.example.myapplication.R;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class RegistrarUsuario extends AppCompatActivity {
+public class ActivityRegistrarUsuario extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override

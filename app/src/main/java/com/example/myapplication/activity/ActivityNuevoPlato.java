@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,9 +7,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myapplication.R;
 import com.example.myapplication.model.Plato;
 
-public class NuevoPlate extends AppCompatActivity {
+public class ActivityNuevoPlato extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

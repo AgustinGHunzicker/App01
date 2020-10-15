@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 import com.example.myapplication.model.Plato;
 
-public class PlateViewHolder extends RecyclerView.ViewHolder {
+public class ViewHolderPlato extends RecyclerView.ViewHolder {
 
     ImageView plateImage;
     CardView cardViewPlate;
@@ -26,7 +26,7 @@ public class PlateViewHolder extends RecyclerView.ViewHolder {
     Button btnAsk;
     Plato plate;
 
-    public PlateViewHolder(@NonNull View itemView, Boolean addButttonAsk) {
+    public ViewHolderPlato(@NonNull View itemView, Boolean addButttonAsk) {
         super(itemView);
         //this.plateImage = (ImageView) itemView.findViewById(R.id.);
         this.cardViewPlate = (CardView) itemView.findViewById(R.id.cardViewPlate);

@@ -1,4 +1,4 @@
-package com.example.myapplication.PlateLogic;
+package com.example.myapplication.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,13 +12,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
+import com.example.myapplication.PlateLogic.AdapterPlato;
+import com.example.myapplication.dao.DaoPlato;
 import com.example.myapplication.R;
 
-public class PlateRecyclerActivity extends AppCompatActivity {
-    private PlatesDao daoPlates;
+public class ActivityPlateRecycler extends AppCompatActivity {
+    private DaoPlato daoPlato;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter plateAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -39,13 +39,13 @@ public class PlateRecyclerActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plate_recycler);
-        daoPlates = new PlatesDao();
+        daoPlato = new DaoPlato();
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        plateAdapter = new PlateAdapter(this, daoPlates.list(), addButtonAsk);//,this);
+        plateAdapter = new AdapterPlato(this, daoPlato.list(), addButtonAsk);//,this);
 
         recyclerView.setAdapter(plateAdapter);
 
@@ -67,7 +67,7 @@ public class PlateRecyclerActivity extends AppCompatActivity {
         Resources res = getResources();
         switch (item.getItemId()){
             case R.id.menuListOption1:
-                Intent registerScreen = new Intent(this, PedidoActivity.class);
+                Intent registerScreen = new Intent(this, ActivityPedido.class);
                 startActivity(registerScreen);
                 Log.d("New","ELIGIÓ NUEVO PEDIDO");
 
@@ -78,7 +78,7 @@ public class PlateRecyclerActivity extends AppCompatActivity {
     }
 
     /**
-     * Función que es llamada desde el listener de PlateAdapter, luego de elegir un plato para agregar al pedido
+     * Función que es llamada desde el listener de AdapterPlato, luego de elegir un plato para agregar al pedido
      * @param titlePlate nombre del plaro
      * @param pricePlate precio del platp
      */

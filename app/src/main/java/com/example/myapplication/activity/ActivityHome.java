@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,9 +10,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.myapplication.PlateLogic.PlateRecyclerActivity;
+import com.example.myapplication.R;
 
-public class Home extends AppCompatActivity {
+public class ActivityHome extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,19 +35,19 @@ public class Home extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.menuOption1:
                 //TODO cambiar
-                Intent registerScreen = new Intent(this, RegistrarUsuario.class);
+                Intent registerScreen = new Intent(this, ActivityRegistrarUsuario.class);
                 startActivity(registerScreen);
                 String registrar = res.getString(R.string.activityRegister);
                 Log.d("Tag1", registrar);
                 break;
             case R.id.menuOption2:
-                Intent newPlateScreen = new Intent(this, NuevoPlate.class);
+                Intent newPlateScreen = new Intent(this, ActivityNuevoPlato.class);
                 startActivity(newPlateScreen);
                 String createItem = res.getString(R.string.activityCreateItem);
                 Log.d("Tag2", createItem);
                 break;
             case R.id.menuOption3:
-                Intent platesView = new Intent(this, PlateRecyclerActivity.class);
+                Intent platesView = new Intent(this, ActivityPlateRecycler.class);
                 startActivity(platesView);
                 String itemsList = res.getString(R.string.activityItemsList);
                 Log.d("Tag3",itemsList);

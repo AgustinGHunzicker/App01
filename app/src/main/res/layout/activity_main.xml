@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:paddingStart="@dimen/space_small"
     android:paddingEnd="@dimen/space_small"
-    tools:context=".RegistrarUsuario">
+    tools:context=".activity.ActivityRegistrarUsuario">
 
     <EditText
         android:id="@+id/textUserName"

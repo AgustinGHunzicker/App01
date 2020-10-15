@@ -10,18 +10,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PlateLogic.PlateRecyclerActivity"></activity>
+        <activity android:name=".activity.ActivityPlateRecycler"></activity>
         <activity
-            android:name=".RegistrarUsuario"
+            android:name=".activity.ActivityRegistrarUsuario"
             android:label="SignUp" />
         <activity
-            android:name=".NuevoPlate"
+            android:name=".activity.ActivityNuevoPlato"
             android:label="SignUp" />
         <activity
-            android:name=".PlateLogic.PedidoActivity"
+            android:name=".activity.ActivityPedido"
             android:label="SignUp" />
 
-        <activity android:name=".Home">
+        <activity android:name=".activity.ActivityHome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
