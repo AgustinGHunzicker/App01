@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.PlateLogic;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.myapplication.PlateLogic.PlateRecyclerActivity;
+import com.example.myapplication.R;
 
 import java.time.LocalDateTime;
 
@@ -23,10 +24,8 @@ public class PedidoActivity extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_pedido);
-
             //Toolbar toolbar = findViewById(R.id.toolbarActivityHome);
             // setSupportActionBar(toolbar);
-
 
             final Button btnAddPlate = (Button) findViewById(R.id.btnAddPlate);
 
@@ -34,7 +33,6 @@ public class PedidoActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     startActivityForResult(new Intent(getApplicationContext(), PlateRecyclerActivity.class),REQUEST_CODE);
-
                 }
             });
         }

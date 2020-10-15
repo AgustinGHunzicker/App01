@@ -18,7 +18,7 @@
             android:name=".NuevoPlate"
             android:label="SignUp" />
         <activity
-            android:name=".PedidoActivity"
+            android:name=".PlateLogic.PedidoActivity"
             android:label="SignUp" />
 
         <activity android:name=".Home">
