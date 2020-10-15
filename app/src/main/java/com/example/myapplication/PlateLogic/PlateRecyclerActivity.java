@@ -25,6 +25,18 @@ public class PlateRecyclerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Boolean addButtonAsk = false;
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                addButtonAsk = false;
+            } else {
+                addButtonAsk = extras.getBoolean("addButtonAsk");
+            }
+        } else {
+            addButtonAsk = false;
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plate_recycler);
         daoPlates = new PlatesDao();
@@ -33,7 +45,7 @@ public class PlateRecyclerActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        plateAdapter = new PlateAdapter(daoPlates.list(), listenerAskButton);//,this);
+        plateAdapter = new PlateAdapter(this, daoPlates.list(), addButtonAsk);//,this);
 
         recyclerView.setAdapter(plateAdapter);
 
@@ -65,20 +77,16 @@ public class PlateRecyclerActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private View.OnClickListener listenerAskButton = new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    /*Intent intentResultado = new Intent();
-                    intentResultado.putExtra("cantidad",
-                            Integer.valueOf(
-                                    edtCantidad.getText().toString())
-                    );
-                    intentResultado.putExtra("producto",eleccion);
-                    setResult(Activity.RESULT_OK, intentResultado);
-                    */
-                    Toast.makeText(getApplicationContext(),"tu viej",Toast.LENGTH_LONG).show();
-                    finish();
-                }
-    };
-
+    /**
+     * Función que es llamada desde el listener de PlateAdapter, luego de elegir un plato para agregar al pedido
+     * @param titlePlate nombre del plaro
+     * @param pricePlate precio del platp
+     */
+    public void back(String titlePlate, Double pricePlate) {
+        Intent i = new Intent();
+        i.putExtra("titlePlate", titlePlate);
+        i.putExtra("pricePlate", pricePlate);
+        setResult(Activity.RESULT_OK, i);
+        finish();
+    }
 }

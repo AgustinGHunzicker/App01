@@ -1,6 +1,8 @@
 package com.example.myapplication.PlateLogic;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,36 +20,42 @@ import java.util.List;
 
 public class PlateAdapter extends RecyclerView.Adapter<PlateViewHolder> {
 
+    private PlateRecyclerActivity plateRecyclerActivity;
     private List<Plato> plateList;
-    private PlateViewHolder plateHolder;
-    public View.OnClickListener listenerAskButton;
+    private Boolean addButtonAsk;
 
-    public PlateAdapter(List<Plato> plateListParameter, View.OnClickListener listenerAskButton){
+    public PlateAdapter(PlateRecyclerActivity plateRecyclerActivity, List<Plato> plateListParameter, Boolean addButtonAsk){
+        this.plateRecyclerActivity = plateRecyclerActivity;
         this.plateList = plateListParameter;
-        this.listenerAskButton = listenerAskButton;
+        this.addButtonAsk = addButtonAsk;
     }
 
     public PlateViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fila_plato, parent, false);
-        PlateViewHolder plateViewHolder = new PlateViewHolder(view, listenerAskButton);
+        PlateViewHolder plateViewHolder = new PlateViewHolder(view, addButtonAsk);
         return plateViewHolder;
     }
 
-    public void onBindViewHolder(@NonNull PlateViewHolder plateHolder, int position) {
-        this.plateHolder = plateHolder;
+    public void onBindViewHolder(@NonNull final PlateViewHolder plateHolder, int position) {
         plateHolder.cardViewPlate.setTag(position);
         plateHolder.textTitle.setTag(position);
         plateHolder.textPrice.setTag(position);
         plateHolder.btnVer.setTag(position);
         plateHolder.btnAsk.setTag(position);
+        plateHolder.plate = plateList.get(position);
+        plateHolder.textTitle.setText(plateHolder.plate.getTitle());
+        plateHolder.textPrice.setText("Precio: "+plateHolder.plate.getPrice().toString()+"$");
 
-        Plato plate = plateList.get(position);
-        plateHolder.textTitle.setText(plate.getTitle());
-        plateHolder.textPrice.setText("Precio: "+plate.getPrice().toString()+"$");
+        plateHolder.btnAsk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Plato p = plateList.get(plateHolder.getAdapterPosition());
+                plateRecyclerActivity.back(p.getTitle(), p.getPrice());
+            }
+        });
     }
 
     public int getItemCount() {
         return plateList.size();
     }
-
 }

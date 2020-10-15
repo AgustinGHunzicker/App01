@@ -70,5 +70,8 @@
     <string name="labelSend">Envío</string>
     <string name="labelTakeAway">Take Away</string>
     <string name="btnAddPlate">AGREGAR PLATOS A PEDIDO</string>
+    <string name="textTitlePlate">Plato: </string>
+    <string name="textPricePlate">Precio: </string>
+
 
 </resources>

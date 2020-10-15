@@ -7,11 +7,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.myapplication.R;
 import com.example.myapplication.model.Plato;
-
-import java.time.LocalDateTime;
 
 public class NuevoPlate extends AppCompatActivity {
 
