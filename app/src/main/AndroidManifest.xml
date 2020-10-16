@@ -10,7 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.ActivityPlateRecycler"></activity>
+
+
+        <activity android:name=".activity.ActivityPlateRecycler" />
         <activity
             android:name=".activity.ActivityRegistrarUsuario"
             android:label="SignUp" />
@@ -29,6 +31,5 @@
             </intent-filter>
         </activity>
     </application>
-    
 
 </manifest>
