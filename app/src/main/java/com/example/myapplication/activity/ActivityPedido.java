@@ -115,7 +115,6 @@ public class ActivityPedido extends AppCompatActivity {
                 Además, la actividad de creación de pedidos contará con un listado que mostrará
                 el nombre de los platos incluidos y un detalle mostrando la cantidad de productos en la orden y el precio total.
                  */
-                plateArrayList.add(plato);
 
                 ask = true;
             }
