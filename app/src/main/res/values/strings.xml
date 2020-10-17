@@ -66,13 +66,13 @@
 
     <!-- Pantalla de Nuevos Pedidos -->
     <string name="labelNuevoPedido">Nuevo Pedido</string>
-    <string name="adress">Dirección de Envío</string>
+    <string name="address">Dirección de Envío</string>
     <string name="labelSend">Envío</string>
     <string name="labelTakeAway">Take Away</string>
     <string name="btnAddPlate">AGREGAR PLATOS A PEDIDO</string>
-    <string name="textTitlePlate">Plato: </string>
-    <string name="textPricePlate">Precio: </string>
+    <string name="labelTotalPrice">Precio total: </string>
     <string name="textAceptAsk">Realizar Pedido </string>
+
     <string name="failedOrder">Debe seleccionar un pedido</string>
     <string name="successfulOrder">Pedido exitoso!</string>
 

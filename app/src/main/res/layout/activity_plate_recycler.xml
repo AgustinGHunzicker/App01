@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
-    android:paddingStart="@dimen/space_small"
-    android:paddingEnd="@dimen/space_small"
     tools:context=".activity.ActivityPlateRecycler">
 
     <androidx.appcompat.widget.Toolbar

@@ -14,6 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 import com.example.myapplication.model.Plato;
 
+/*
+    Holder
+    Tendrá como atributos, punteros a instancias de los distintos View que muestra una fila.
+*/
+
 public class ViewHolderPlato extends RecyclerView.ViewHolder {
 
     ImageView plateImage;

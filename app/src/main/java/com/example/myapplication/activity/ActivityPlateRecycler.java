@@ -12,10 +12,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.example.myapplication.PlateLogic.AdapterPlato;
 import com.example.myapplication.dao.DaoPlato;
 import com.example.myapplication.R;
+import com.example.myapplication.model.Plato;
 
 public class ActivityPlateRecycler extends AppCompatActivity {
     private DaoPlato daoPlato;
@@ -25,6 +28,8 @@ public class ActivityPlateRecycler extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /*-- Indica que tipo de boton usar en las ViewHoldPlato,
+            de acuerdo de si viene de la pantalla de ActivityPedido --*/
         Boolean addButtonAsk = false;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -39,18 +44,16 @@ public class ActivityPlateRecycler extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plate_recycler);
-        daoPlato = new DaoPlato();
+
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
+
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        daoPlato = new DaoPlato();
         plateAdapter = new AdapterPlato(this, daoPlato.list(), addButtonAsk);//,this);
-
         recyclerView.setAdapter(plateAdapter);
-
-        //super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_home);
 
         Toolbar toolbar = findViewById(R.id.toolbarPlateRecycler);
         setSupportActionBar(toolbar);
@@ -77,16 +80,9 @@ public class ActivityPlateRecycler extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Función que es llamada desde el listener de AdapterPlato, luego de elegir un plato para agregar al pedido
-     * @param titlePlate nombre del plaro
-     * @param pricePlate precio del platp
+    /*
+    void setOnItemClickListener(AdapterView.OnItemClickListener listener)
+void setOnItemLongClickListener(AdapterView.OnItemLongClickListener listener)
+void setOnItemSelectedListener(AdapterView.OnItemSelectedListener listener)
      */
-    public void back(String titlePlate, Double pricePlate) {
-        Intent i = new Intent();
-        i.putExtra("titlePlate", titlePlate);
-        i.putExtra("pricePlate", pricePlate);
-        setResult(Activity.RESULT_OK, i);
-        finish();
-    }
 }

@@ -1,17 +1,17 @@
 package com.example.myapplication.activity;
 
 import android.app.Activity;
-import android.app.AsyncNotedAppOp;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,36 +20,34 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
+import com.example.myapplication.model.Plato;
+
+import java.util.ArrayList;
 
 
 public class ActivityPedido extends AppCompatActivity {
 
-    EditText textEmailAddress;
-    RadioButton radioButtonEnvio;
-    RadioButton radioButtonTakeAway;
-    EditText textAdress;
-    Button editPrice;
-    TextView textTitlePlate;
-    TextView textPricePlate;
-    Button askPlate;
-    Boolean ask=false;
+    private EditText textEmailAddress;
+    private EditText textAddress;
+    private RadioButton radioButtonEnvio;
+    private RadioButton radioButtonTakeAway;
+    private Button btnAddPlate;
+    private Button btnAskPlate;
+    private TextView textTotalPrice;
+    private ListView listPlates;
+    private ArrayAdapter<Plato> plateAdapter;
+
+    private Boolean ask = false;
 
 
     private static final int REQUEST_CODE=222;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        textEmailAddress = (EditText) findViewById(R.id.textEmailAddress);
-        radioButtonEnvio = (RadioButton) findViewById(R.id.radioButtonEnvio);
-        radioButtonTakeAway = (RadioButton) findViewById(R.id.radioButtonTakeAway);
-        textAdress = (EditText) findViewById(R.id.textAdress);
-        editPrice = (Button) findViewById(R.id.btnAddPlate);
-        textTitlePlate = (TextView) findViewById(R.id.textTitlePlate);
-        textPricePlate = (TextView) findViewById(R.id.textPricePlate);
-        askPlate=(Button) findViewById(R.id.buttonAskPlate);
-
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pedido);
 
         BroadcastReceiver br = new MyFirstReceiver();
+
         IntentFilter filtro = new IntentFilter();
         filtro.addAction(MyFirstReceiver.OFERTA);
         getApplication().getApplicationContext().registerReceiver(br, filtro);
@@ -58,12 +56,24 @@ public class ActivityPedido extends AppCompatActivity {
         servicio.putExtra("nombrePlato", "algo");
         startService(servicio);
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pedido);
+        textEmailAddress = (EditText) findViewById(R.id.textEmailAddress);
+        textAddress = (EditText) findViewById(R.id.textAddress);
+        radioButtonEnvio = (RadioButton) findViewById(R.id.radioButtonEnvio);
+        radioButtonTakeAway = (RadioButton) findViewById(R.id.radioButtonTakeAway);
+        textTotalPrice = (TextView) findViewById(R.id.textTotalPrice);
+        btnAskPlate = (Button) findViewById(R.id.buttonAskPlate);
+        btnAddPlate = (Button) findViewById(R.id.btnAddPlate);
+        listPlates = (ListView) findViewById(R.id.listPlates);
+        addListenerBtn();
 
-        final Button btnAddPlate = (Button) findViewById(R.id.btnAddPlate);
-        final Button btnAskPlate=(Button) findViewById(R.id.buttonAskPlate);
 
+        //Este arreglo lo hice para probar
+        String platos[] = new String[]{};
+        plateAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, platos);
+        listPlates.setAdapter(plateAdapter);
+    }
+
+    private void addListenerBtn(){
         btnAddPlate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,6 +82,7 @@ public class ActivityPedido extends AppCompatActivity {
                 startActivityForResult(i, REQUEST_CODE);
             }
         });
+
         btnAskPlate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,35 +94,35 @@ public class ActivityPedido extends AppCompatActivity {
                 else{
                     Log.d("ASK", "Failed order");
                     Toast.makeText(getApplicationContext(),R.string.failedOrder,Toast.LENGTH_LONG).show();
-                };
+                }
             }
         });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
         super.onActivityResult(requestCode, resultCode, data);
+
         if (resultCode == Activity.RESULT_OK) {
+
             if(requestCode == REQUEST_CODE) {
-                //TODO cambiar por id, cuando se tenga la base de datos
-                String producto = data.getExtras().getString("titlePlate");
-                Double cantidad = data.getExtras().getDouble("pricePlate");
 
+                Plato plato = (Plato) data.getSerializableExtra("plato");
 
-                //TODO agregar el producto a una lista, y la cantidad etc
+                //TODO agregar platos a la lista
+                /*
+                Además, la actividad de creación de pedidos contará con un listado que mostrará
+                el nombre de los platos incluidos y un detalle mostrando la cantidad de productos en la orden y el precio total.
+                 */
+                plateArrayList.add(plato);
 
-
-                textTitlePlate = (TextView) findViewById(R.id.textTitlePlate);
-                textPricePlate = (TextView) findViewById(R.id.textPricePlate);
-
-                textTitlePlate.setText(getString(R.string.textTitlePlate)+producto);
-                textPricePlate.setText(getString(R.string.textPricePlate)+cantidad.toString());
-                ask=true;
+                ask = true;
             }
+
         }
-        else{
+        else
             Log.d("TagActivity", "fallo return de activity");
-        }
     }
 
     class taskSavePlate extends AsyncTask<String, Void, String> {
@@ -128,8 +139,6 @@ public class ActivityPedido extends AppCompatActivity {
             myIntention.setAction(MyFirstReceiver.OFERTA);
             myIntention.putExtra("Identificador", "On sale");
             sendBroadcast(myIntention);
-
-
         }
 
         @Override
