@@ -72,9 +72,7 @@
     <string name="btnAddPlate">AGREGAR PLATOS A PEDIDO</string>
     <string name="labelTotalPrice">Precio total: </string>
     <string name="textAceptAsk">Realizar Pedido </string>
-
     <string name="failedOrder">Debe seleccionar un pedido</string>
     <string name="successfulOrder">Pedido exitoso!</string>
-
 
 </resources>

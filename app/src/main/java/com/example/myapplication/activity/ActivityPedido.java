@@ -8,7 +8,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -18,11 +17,12 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.myapplication.R;
+import com.example.myapplication.adapters.PlatoAdapter;
 import com.example.myapplication.model.Plato;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ActivityPedido extends AppCompatActivity {
@@ -32,12 +32,13 @@ public class ActivityPedido extends AppCompatActivity {
     private RadioButton radioButtonEnvio;
     private RadioButton radioButtonTakeAway;
     private Button btnAddPlate;
-    private Button btnAskPlate;
+    private Button btnConfirmarPedido;
     private TextView textTotalPrice;
     private ListView listPlates;
-    private ArrayAdapter<Plato> plateAdapter;
-
-    private Boolean ask = false;
+    private List<Plato> platosEnPedido;
+    private PlatoAdapter plateAdapter;
+    //Atributo que indica si se ha seleccionado un plato o no
+    // private Boolean isPlateSelected = false;
 
 
     private static final int REQUEST_CODE=222;
@@ -61,15 +62,12 @@ public class ActivityPedido extends AppCompatActivity {
         radioButtonEnvio = (RadioButton) findViewById(R.id.radioButtonEnvio);
         radioButtonTakeAway = (RadioButton) findViewById(R.id.radioButtonTakeAway);
         textTotalPrice = (TextView) findViewById(R.id.textTotalPrice);
-        btnAskPlate = (Button) findViewById(R.id.buttonAskPlate);
+        btnConfirmarPedido = (Button) findViewById(R.id.buttonAskPlate);
         btnAddPlate = (Button) findViewById(R.id.btnAddPlate);
         listPlates = (ListView) findViewById(R.id.listPlates);
         addListenerBtn();
-
-
-        //Este arreglo lo hice para probar
-        String platos[] = new String[]{};
-        plateAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, platos);
+        platosEnPedido = new ArrayList<Plato>();
+        plateAdapter = new PlatoAdapter(this, platosEnPedido);
         listPlates.setAdapter(plateAdapter);
     }
 
@@ -83,17 +81,21 @@ public class ActivityPedido extends AppCompatActivity {
             }
         });
 
-        btnAskPlate.setOnClickListener(new View.OnClickListener() {
+        btnConfirmarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(ask){
+                if(platosEnPedido.size()>0){
                     Log.d("ASK", "Successful order");
-                    Toast.makeText(getApplicationContext(),R.string.successfulOrder,Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),
+                            R.string.successfulOrder,
+                            Toast.LENGTH_LONG).show();
                     new taskSavePlate().execute("Succesfull");
                 }
                 else{
                     Log.d("ASK", "Failed order");
-                    Toast.makeText(getApplicationContext(),R.string.failedOrder,Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),
+                            R.string.failedOrder,
+                            Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -109,14 +111,10 @@ public class ActivityPedido extends AppCompatActivity {
             if(requestCode == REQUEST_CODE) {
 
                 Plato plato = (Plato) data.getSerializableExtra("plato");
-
-                //TODO agregar platos a la lista
-                /*
-                Además, la actividad de creación de pedidos contará con un listado que mostrará
-                el nombre de los platos incluidos y un detalle mostrando la cantidad de productos en la orden y el precio total.
-                 */
-
-                ask = true;
+                platosEnPedido.add(plato);
+                //actualizar el adaptador
+                plateAdapter = new PlatoAdapter(this, platosEnPedido);
+                listPlates.setAdapter(plateAdapter);
             }
 
         }

@@ -5,20 +5,16 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 
-import com.example.myapplication.PlateLogic.AdapterPlato;
+import com.example.myapplication.adapters.PlatoRecyclerAdapter;
 import com.example.myapplication.dao.DaoPlato;
 import com.example.myapplication.R;
-import com.example.myapplication.model.Plato;
 
 public class ActivityPlateRecycler extends AppCompatActivity {
     private DaoPlato daoPlato;
@@ -52,7 +48,7 @@ public class ActivityPlateRecycler extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         daoPlato = new DaoPlato();
-        plateAdapter = new AdapterPlato(this, daoPlato.list(), addButtonAsk);//,this);
+        plateAdapter = new PlatoRecyclerAdapter(this, daoPlato.list(), addButtonAsk);//,this);
         recyclerView.setAdapter(plateAdapter);
 
         Toolbar toolbar = findViewById(R.id.toolbarPlateRecycler);
@@ -80,9 +76,4 @@ public class ActivityPlateRecycler extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*
-    void setOnItemClickListener(AdapterView.OnItemClickListener listener)
-void setOnItemLongClickListener(AdapterView.OnItemLongClickListener listener)
-void setOnItemSelectedListener(AdapterView.OnItemSelectedListener listener)
-     */
 }

@@ -1,4 +1,4 @@
-package com.example.myapplication.PlateLogic;
+package com.example.myapplication.adapters;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,13 +22,13 @@ import java.util.List;
  - El adaptador permite el acceso a los elementos de datos
  - Este también es responsable de crear una vista para cada elemento en la colección de datos.
  */
-public class AdapterPlato extends RecyclerView.Adapter<ViewHolderPlato> {
+public class PlatoRecyclerAdapter extends RecyclerView.Adapter<ViewHolderPlato> {
 
     private ActivityPlateRecycler activityPlateRecycler;
     private List<Plato> plateList;
     private Boolean addButtonAsk;
 
-    public AdapterPlato(ActivityPlateRecycler activityPlateRecycler, List<Plato> plateListParameter, Boolean addButtonAsk){
+    public PlatoRecyclerAdapter(ActivityPlateRecycler activityPlateRecycler, List<Plato> plateListParameter, Boolean addButtonAsk){
         this.activityPlateRecycler = activityPlateRecycler;
         this.plateList = plateListParameter;
         this.addButtonAsk = addButtonAsk;
@@ -61,9 +61,9 @@ public class AdapterPlato extends RecyclerView.Adapter<ViewHolderPlato> {
         /*-- button ver --*/
         plateHolder.btnVer.setTag(position);
 
-        /*-- button ask --*/
-        plateHolder.btnAsk.setTag(position);
-        plateHolder.btnAsk.setOnClickListener(new View.OnClickListener() {
+        /*-- button pedirPlato --*/
+        plateHolder.btnPedirPlato.setTag(position);
+        plateHolder.btnPedirPlato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Plato plato = plateList.get(plateHolder.getAdapterPosition());

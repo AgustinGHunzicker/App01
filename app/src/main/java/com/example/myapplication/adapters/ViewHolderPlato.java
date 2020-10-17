@@ -1,7 +1,5 @@
-package com.example.myapplication.PlateLogic;
+package com.example.myapplication.adapters;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -28,7 +26,7 @@ public class ViewHolderPlato extends RecyclerView.ViewHolder {
     TextView textPrice;
     TextView textCalories;
     Button btnVer;
-    Button btnAsk;
+    Button btnPedirPlato;
     Plato plate;
 
     public ViewHolderPlato(@NonNull View itemView, Boolean addButttonAsk) {
@@ -40,15 +38,15 @@ public class ViewHolderPlato extends RecyclerView.ViewHolder {
         this.textPrice = (TextView) itemView.findViewById(R.id.textPricePlate);
         //this.textCalories = (TextView) itemView.findViewById(R.id.textCaloriesPlate);
         this.btnVer = (Button) itemView.findViewById(R.id.btnVer);
-        this.btnAsk = (Button) itemView.findViewById(R.id.btnAsk);
+        this.btnPedirPlato = (Button) itemView.findViewById(R.id.btnAsk);
 
         if(addButttonAsk){
-            btnAsk.setVisibility(View.VISIBLE);
+            btnPedirPlato.setVisibility(View.VISIBLE);
             btnVer.setVisibility(View.GONE);
         }
         else{
             btnVer.setVisibility(View.VISIBLE);
-            btnAsk.setVisibility(View.GONE);
+            btnPedirPlato.setVisibility(View.GONE);
         }
     }
 }
