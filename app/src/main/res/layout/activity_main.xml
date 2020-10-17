@@ -117,13 +117,14 @@
 
         <Spinner
             android:id="@+id/spinnerMonth"
-            android:layout_width="match_parent"
+            android:layout_width="193dp"
             android:layout_height="wrap_content"
+            android:layout_weight="0"
             android:entries="@array/labelMonth" />
 
         <Spinner
             android:id="@+id/spinnerYear"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
@@ -164,7 +165,7 @@
 
         <Switch
             android:id="@+id/switchInitialLoad"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
