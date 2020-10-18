@@ -2,6 +2,8 @@ package com.example.myapplication.activity;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -35,52 +37,52 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
         /*
               EditText variables
          */
-        final EditText editName = (EditText) findViewById(R.id.textUserName);
-        final EditText editUserPassword = (EditText) findViewById(R.id.textUserPassword);
-        final EditText editUserPasswordRepeat = (EditText) findViewById(R.id.textUserPasswordRepeat);
-        final EditText editEmail = (EditText) findViewById(R.id.textEmailAddress);
-        final EditText editCardNumber = (EditText) findViewById(R.id.textCardNumber);
-        final EditText editCardCCV = (EditText) findViewById(R.id.textCardCCV);
-        final EditText editCBU = (EditText) findViewById(R.id.textCBU);
-        final EditText editAliasCBU = (EditText) findViewById(R.id.textAliasCBU);
+        final EditText editName = findViewById(R.id.textUserName);
+        final EditText editUserPassword = findViewById(R.id.textUserPassword);
+        final EditText editUserPasswordRepeat = findViewById(R.id.textUserPasswordRepeat);
+        final EditText editEmail = findViewById(R.id.textEmailAddress);
+        final EditText editCardNumber = findViewById(R.id.textCardNumber);
+        final EditText editCardCCV = findViewById(R.id.textCardCCV);
+        final EditText editCBU = findViewById(R.id.textCBU);
+        final EditText editAliasCBU = findViewById(R.id.textAliasCBU);
 
         /*
             TextView variables
          */
-        final TextView textViewAmountCredit = (TextView) findViewById(R.id.creditLoad);
-        final TextView textInitialLoad = (TextView) findViewById(R.id.textInitialLoad);
+        final TextView textViewAmountCredit = findViewById(R.id.creditLoad);
+        final TextView textInitialLoad = findViewById(R.id.textInitialLoad);
 
         /*
             RadioButton variables
          */
-        final RadioButton radioBtnDebit = (RadioButton) findViewById(R.id.radioButtonDebit);
-        final RadioButton radioBtnCredit = (RadioButton) findViewById(R.id.radioButtonCredit);
+        final RadioButton radioBtnDebit = findViewById(R.id.radioButtonDebit);
+        final RadioButton radioBtnCredit = findViewById(R.id.radioButtonCredit);
 
         /*
             Spinner variables
          */
-        final Spinner spinnerMonth = (Spinner) findViewById(R.id.spinnerMonth);
-        final Spinner spinnerYear = (Spinner) findViewById(R.id.spinnerYear);
+        final Spinner spinnerMonth = findViewById(R.id.spinnerMonth);
+        final Spinner spinnerYear = findViewById(R.id.spinnerYear);
 
         /*
             Switch variables
          */
-        final Switch switchInitLoad = (Switch) findViewById(R.id.switchInitialLoad);
+        final Switch switchInitLoad = findViewById(R.id.switchInitialLoad);
 
         /*
             SeekBar variables
          */
-        final SeekBar seekBarInitCredit = (SeekBar) findViewById(R.id.seekBarInitialCredit);
+        final SeekBar seekBarInitCredit = findViewById(R.id.seekBarInitialCredit);
 
         /*
             CheckBox variables
          */
-        final CheckBox checkBoxConditions = (CheckBox) findViewById(R.id.checkBoxConditions);
+        final CheckBox checkBoxConditions = findViewById(R.id.checkBoxConditions);
 
         /*
             Button variables
          */
-        final Button btnRegister = (Button) findViewById(R.id.btnRegister);
+        final Button btnRegister = findViewById(R.id.btnRegister);
 
 
         /*----------------------------------------- Eventos---------------------------------------*/
@@ -135,6 +137,7 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
             Refleja en el textViewAmountCredit el saldo que se va regulando con la seekBar
          */
         seekBarInitCredit.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onProgressChanged(SeekBar seekBar, int amount, boolean b) {
                 textViewAmountCredit.setText("$" + amount + "");
@@ -144,6 +147,7 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
+
         /*
             Acepto los terminos y condiciones si se aceptaron, se habilit el boton de registrar
         */
@@ -158,21 +162,20 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
             Load the years since this year + 12
          */
         LocalDateTime localDateTime = LocalDateTime.now();
-        Integer yearNow = localDateTime.getYear();
+        int yearNow = localDateTime.getYear();
         ArrayList years = new ArrayList<>();
         years.add("");
         for(int i = 0; i < 12; i++){
             years.add(yearNow + i);
         }
-        ArrayAdapter spinnerAdapterYears = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,years);
+        ArrayAdapter spinnerAdapterYears = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, years);
         spinnerYear.setAdapter(spinnerAdapterYears);
-
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Boolean invalid_space = false;
+                boolean invalid_space = false;
                 String name = editName.getText().toString();
                 String password = editUserPassword.getText().toString();
                 String passwordCtn = editUserPasswordRepeat.getText().toString();

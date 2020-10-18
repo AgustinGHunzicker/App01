@@ -48,13 +48,13 @@
     <string name="activityItemsList">LISTA DE ITEMS</string>
 
     <!-- Pantalla de nuevo plato -->
-    <string name="labelNewPlate">Nuevo Plato</string>
+    <string name="labelNewPlate">Nuevo plato</string>
     <string name="labelTitlePlate">Título</string>
     <string name="labelDescription">Descripción</string>
     <string name="labelPrice">Precio</string>
     <string name="labelCalories">Calorías</string>
     <string name="btnSave">Guardar</string>
-    <string name="btnAsk">Pedir</string>
+    <string name="btnPedir">Pedir</string>
     <string name="ToastInvalidSpacesPlate">Campos no válidos/incompletos</string>
     <string name="ToastSuccessfulTransactionPlate">El plato ha sido creado con éxito</string>
 
@@ -62,16 +62,16 @@
 
     <!-- Pantalla de visualizar los platos -->
     <string name="btnVer">Ver</string>
-    <string name="newPedido">Nuevo Pedido</string>
+    <string name="newPedido">Nuevo pedido</string>
 
     <!-- Pantalla de Nuevos Pedidos -->
-    <string name="labelNuevoPedido">Nuevo Pedido</string>
-    <string name="address">Dirección de Envío</string>
+    <string name="labelNuevoPedido">Nuevo pedido</string>
+    <string name="address">Dirección de envío</string>
     <string name="labelSend">Envío</string>
     <string name="labelTakeAway">Take Away</string>
     <string name="btnAddPlate">AGREGAR PLATOS A PEDIDO</string>
     <string name="labelTotalPrice">Precio total: </string>
-    <string name="textAceptAsk">Realizar Pedido </string>
+    <string name="textRealizarPedido">Realizar pedido </string>
     <string name="failedOrder">Revisar los campos ingresados</string>
     <string name="successfulOrder">Pedido exitoso!</string>
     <string name="lblcantidadproductos">Cantidad productos: </string>

@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/padding_fila_lista"
+    android:paddingBottom="@dimen/padding_fila_lista">
+
+    <TextView
+        android:id="@+id/rowCantidadPlato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="6"
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/rowNombrePlato"
-        android:layout_width="204dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="2"
+        android:gravity="start" />
 
     <TextView
         android:id="@+id/rowPrecioPlato"
-        android:layout_width="16dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="5"
+        android:gravity="end" />
 
 </LinearLayout>

@@ -25,11 +25,10 @@
             android:layout_gravity="bottom|center">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imagePlate"
                 android:layout_width="363dp"
                 android:layout_height="239dp"
                 android:adjustViewBounds="false"
-                android:contentDescription="TODO"
                 android:cropToPadding="false"
                 android:scaleType="fitStart"
                 app:srcCompat="@drawable/hamburguesa1" />
@@ -76,11 +75,11 @@
                 android:visibility="visible" />
 
             <Button
-                android:id="@+id/btnAsk"
+                android:id="@+id/btnPedir"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="@string/btnAsk"
+                android:text="@string/btnPedir"
                 android:visibility="gone" />
         </LinearLayout>
 

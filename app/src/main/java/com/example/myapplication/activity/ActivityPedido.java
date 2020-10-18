@@ -1,8 +1,8 @@
 package com.example.myapplication.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.AsyncTask;
@@ -22,9 +22,9 @@ import com.example.myapplication.R;
 import com.example.myapplication.adapters.PlatoAdapter;
 import com.example.myapplication.model.Plato;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class ActivityPedido extends AppCompatActivity {
 
@@ -38,6 +38,7 @@ public class ActivityPedido extends AppCompatActivity {
     private TextView textCantidadProductos;
     private ListView listPlates;
     private List<Plato> platosEnPedido;
+    private Double precioTotalPedido;
     private PlatoAdapter plateAdapter;
 
     private static final int REQUEST_CODE=222;
@@ -56,21 +57,21 @@ public class ActivityPedido extends AppCompatActivity {
         servicio.putExtra("nombrePlato", "algo");
         startService(servicio);
 
-        textEmailAddress = (EditText) findViewById(R.id.textEmailAddress);
-        textAddress = (EditText) findViewById(R.id.textAddress);
-        radioButtonEnvio = (RadioButton) findViewById(R.id.radioButtonEnvio);
-        radioButtonTakeAway = (RadioButton) findViewById(R.id.radioButtonTakeAway);
-        textTotalPrice = (TextView) findViewById(R.id.textTotalPrice);
-        textCantidadProductos = (TextView) findViewById(R.id.textCantidadProductos);
-        btnConfirmarPedido = (Button) findViewById(R.id.buttonAskPlate);
+        textEmailAddress = findViewById(R.id.textEmailAddress);
+        textAddress = findViewById(R.id.textAddress);
+        radioButtonEnvio = findViewById(R.id.radioButtonEnvio);
+        radioButtonTakeAway = findViewById(R.id.radioButtonTakeAway);
+        textTotalPrice = findViewById(R.id.textTotalPrice);
+        textCantidadProductos = findViewById(R.id.textCantidadProductos);
+        btnConfirmarPedido = findViewById(R.id.buttonAskPlate);
         btnConfirmarPedido.setEnabled(false);
-        btnAddPlate = (Button) findViewById(R.id.btnAddPlate);
-        listPlates = (ListView) findViewById(R.id.listPlates);
+        btnAddPlate = findViewById(R.id.btnAddPlate);
+        listPlates = findViewById(R.id.listPlates);
         addListenerBtn();
-        platosEnPedido = new ArrayList<Plato>();
+        platosEnPedido = new ArrayList<>();
+        precioTotalPedido = 0.0d;
         plateAdapter = new PlatoAdapter(this, platosEnPedido);
         listPlates.setAdapter(plateAdapter);
-
     }
 
     private void addListenerBtn(){
@@ -88,13 +89,13 @@ public class ActivityPedido extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String email = textEmailAddress.getText().toString();
-                String adress = textAddress.getText().toString();
-                Boolean invalid_space = false;
+                String address = textAddress.getText().toString();
+                boolean invalid_space = false;
 
                 if(!email.contains("@"))
                     invalid_space = true;
                 else if(email.substring(email.lastIndexOf("@")).length() < 3) invalid_space = true;
-                else if(adress.length() < 1) invalid_space = true;
+                else if(address.length() < 1) invalid_space = true;
                 else if(!radioButtonEnvio.isChecked() && !radioButtonTakeAway.isChecked()) invalid_space = true;
 
                 if(invalid_space){
@@ -123,6 +124,7 @@ public class ActivityPedido extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
@@ -134,20 +136,13 @@ public class ActivityPedido extends AppCompatActivity {
 
                 assert data != null;
                 Plato plato = (Plato) data.getSerializableExtra("plato");
-                platosEnPedido.add(plato);
+                plateAdapter.addPlato(plato);
                 if(platosEnPedido.size() > 0) btnConfirmarPedido.setEnabled(true);
-                //actualizar el adaptador
-                plateAdapter = new PlatoAdapter(this, platosEnPedido);
-                listPlates.setAdapter(plateAdapter);
-                Double precioTotalPedido = (double) 0;
-                //Calculo el precio total del pedido sumando precios unitarios
-                int i = 0;
-                for(; i < platosEnPedido.size(); i++)
-                    precioTotalPedido += platosEnPedido.get(i).getPrice();
-                //seteo el precio total en el textView
-                textTotalPrice.setText(" $"+precioTotalPedido.toString());
-                //
-                textCantidadProductos.setText(""+i);
+
+                precioTotalPedido += plato.getPrice();
+                textTotalPrice.setText(" $"+String.format("%.2f", precioTotalPedido));
+
+                textCantidadProductos.setText(""+platosEnPedido.size());
             }
         }
         else
@@ -156,9 +151,7 @@ public class ActivityPedido extends AppCompatActivity {
 
     class taskSavePlate extends AsyncTask<String, Void, String> {
         @Override
-        protected void onPreExecute() {
-
-        }
+        protected void onPreExecute() { }
 
         @Override
         protected void onPostExecute(String s) {
@@ -179,7 +172,6 @@ public class ActivityPedido extends AppCompatActivity {
             }
             return strings[0];
         }
-
     }
 }
 

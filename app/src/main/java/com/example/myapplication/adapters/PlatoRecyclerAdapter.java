@@ -63,7 +63,7 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
             this.textPrice = (TextView) itemView.findViewById(R.id.textPricePlate);
             //this.textCalories = (TextView) itemView.findViewById(R.id.textCaloriesPlate);
             this.btnVer = (Button) itemView.findViewById(R.id.btnVer);
-            this.btnPedirPlato = (Button) itemView.findViewById(R.id.btnAsk);
+            this.btnPedirPlato = (Button) itemView.findViewById(R.id.btnPedir);
 
             if(addButttonAsk){
                 btnPedirPlato.setVisibility(View.VISIBLE);
