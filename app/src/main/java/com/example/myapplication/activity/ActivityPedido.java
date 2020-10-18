@@ -34,12 +34,10 @@ public class ActivityPedido extends AppCompatActivity {
     private Button btnAddPlate;
     private Button btnConfirmarPedido;
     private TextView textTotalPrice;
+    private TextView textCantidadProductos;
     private ListView listPlates;
     private List<Plato> platosEnPedido;
     private PlatoAdapter plateAdapter;
-    //Atributo que indica si se ha seleccionado un plato o no
-    // private Boolean isPlateSelected = false;
-
 
     private static final int REQUEST_CODE=222;
     @Override
@@ -62,13 +60,16 @@ public class ActivityPedido extends AppCompatActivity {
         radioButtonEnvio = (RadioButton) findViewById(R.id.radioButtonEnvio);
         radioButtonTakeAway = (RadioButton) findViewById(R.id.radioButtonTakeAway);
         textTotalPrice = (TextView) findViewById(R.id.textTotalPrice);
+        textCantidadProductos = (TextView) findViewById(R.id.textCantidadProductos);
         btnConfirmarPedido = (Button) findViewById(R.id.buttonAskPlate);
+        btnConfirmarPedido.setEnabled(false);
         btnAddPlate = (Button) findViewById(R.id.btnAddPlate);
         listPlates = (ListView) findViewById(R.id.listPlates);
         addListenerBtn();
         platosEnPedido = new ArrayList<Plato>();
         plateAdapter = new PlatoAdapter(this, platosEnPedido);
         listPlates.setAdapter(plateAdapter);
+
     }
 
     private void addListenerBtn(){
@@ -78,24 +79,35 @@ public class ActivityPedido extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), ActivityPlateRecycler.class);
                 i.putExtra("addButtonAsk", true);
                 startActivityForResult(i, REQUEST_CODE);
+
             }
         });
 
         btnConfirmarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(platosEnPedido.size()>0){
+                String email = textEmailAddress.getText().toString();
+                String adress = textAddress.getText().toString();
+                Boolean invalid_space = false;
+
+                if(!email.contains("@"))
+                    invalid_space = true;
+                else if(email.substring(email.lastIndexOf("@")).length() < 3) invalid_space = true;
+                else if(adress.length() < 1) invalid_space = true;
+                else if(!radioButtonEnvio.isChecked() && !radioButtonTakeAway.isChecked()) invalid_space = true;
+
+                if(invalid_space){
+                    Log.d("ASK", "Failed order");
+                    Toast.makeText(getApplicationContext(),
+                            R.string.failedOrder,
+                            Toast.LENGTH_LONG).show();
+                }
+                else{
                     Log.d("ASK", "Successful order");
                     Toast.makeText(getApplicationContext(),
                             R.string.successfulOrder,
                             Toast.LENGTH_LONG).show();
                     new taskSavePlate().execute("Succesfull");
-                }
-                else{
-                    Log.d("ASK", "Failed order");
-                    Toast.makeText(getApplicationContext(),
-                            R.string.failedOrder,
-                            Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -110,13 +122,23 @@ public class ActivityPedido extends AppCompatActivity {
 
             if(requestCode == REQUEST_CODE) {
 
+                assert data != null;
                 Plato plato = (Plato) data.getSerializableExtra("plato");
                 platosEnPedido.add(plato);
+                if(platosEnPedido.size() > 0) btnConfirmarPedido.setEnabled(true);
                 //actualizar el adaptador
                 plateAdapter = new PlatoAdapter(this, platosEnPedido);
                 listPlates.setAdapter(plateAdapter);
+                Double precioTotalPedido = (double) 0;
+                //Calculo el precio total del pedido sumando precios unitarios
+                int i = 0;
+                for(; i < platosEnPedido.size(); i++)
+                    precioTotalPedido += platosEnPedido.get(i).getPrice();
+                //seteo el precio total en el textView
+                textTotalPrice.setText(" $"+precioTotalPedido.toString());
+                //
+                textCantidadProductos.setText(""+i);
             }
-
         }
         else
             Log.d("TagActivity", "fallo return de activity");
