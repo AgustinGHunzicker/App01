@@ -233,6 +233,7 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),R.string.ToastInvalidSpaces,Toast.LENGTH_LONG).show();
                 }
                 else{
+                    //TODO persistir en la base de datos
                     Toast.makeText(getApplicationContext(),R.string.ToastSuccessfulTransaction,Toast.LENGTH_LONG).show();
                 }
             }

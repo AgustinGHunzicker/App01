@@ -1,10 +1,15 @@
 package com.example.myapplication.model;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
 @SuppressWarnings("serial")
+@Entity
 public class Tarjeta implements Serializable {
 
+    @PrimaryKey(autoGenerate = true)
     private Integer id;
     private String numero;
     private String ccv;
@@ -13,8 +18,7 @@ public class Tarjeta implements Serializable {
 
     public Tarjeta () {}
 
-    public Tarjeta(Integer id, String numero, String ccv, LocalDate vencimiento, boolean esCredito) {
-        this.id = id;
+    public Tarjeta(String numero, String ccv, LocalDate vencimiento, boolean esCredito) {
         this.numero = numero;
         this.ccv = ccv;
         this.vencimiento = vencimiento;

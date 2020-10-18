@@ -1,18 +1,22 @@
 package com.example.myapplication.model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
+@Entity
 public class CuentaBancaria implements Serializable {
 
+    @PrimaryKey(autoGenerate = true)
     private Integer id;
     private String cbu;
     private String alias;
 
     public CuentaBancaria () {}
 
-    public CuentaBancaria(Integer id, String cbu, String alias) {
-        this.id = id;
+    public CuentaBancaria(String cbu, String alias) {
         this.cbu = cbu;
         this.alias = alias;
     }

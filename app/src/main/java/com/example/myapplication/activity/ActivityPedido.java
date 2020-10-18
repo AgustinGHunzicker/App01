@@ -22,7 +22,6 @@ import com.example.myapplication.R;
 import com.example.myapplication.adapters.PlatoAdapter;
 import com.example.myapplication.model.Plato;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 

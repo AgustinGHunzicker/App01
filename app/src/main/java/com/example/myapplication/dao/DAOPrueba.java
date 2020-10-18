@@ -5,9 +5,9 @@ import com.example.myapplication.model.Plato;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DaoPlato {
+public class DAOPrueba {
 
-    public DaoPlato(){}
+    public DAOPrueba(){}
 
     public List<Plato> list(){
         //TODO implementar dao

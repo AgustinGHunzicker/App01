@@ -12,11 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.myapplication.adapters.PlatoRecyclerAdapter;
-import com.example.myapplication.dao.DaoPlato;
+import com.example.myapplication.dao.DAOPrueba;
 import com.example.myapplication.R;
 
 public class ActivityPlateRecycler extends AppCompatActivity {
-    DaoPlato daoPlato;
+    DAOPrueba daoPrueba;
     RecyclerView recyclerView;
     RecyclerView.Adapter plateAdapter;
     RecyclerView.LayoutManager layoutManager;
@@ -41,8 +41,8 @@ public class ActivityPlateRecycler extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        daoPlato = new DaoPlato();
-        plateAdapter = new PlatoRecyclerAdapter(this, daoPlato.list(), addButtonAsk);//,this);
+        daoPrueba = new DAOPrueba();
+        plateAdapter = new PlatoRecyclerAdapter(this, daoPrueba.list(), addButtonAsk);//,this);
         recyclerView.setAdapter(plateAdapter);
 
         Toolbar toolbar = findViewById(R.id.toolbarPlateRecycler);

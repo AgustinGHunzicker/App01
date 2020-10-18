@@ -1,10 +1,15 @@
 package com.example.myapplication.model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
+@Entity
 public class Usuario implements Serializable {
 
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String nombre;
     private String clave;
@@ -15,8 +20,7 @@ public class Usuario implements Serializable {
 
     public Usuario() {}
 
-    public Usuario(int id, String nombre, String clave, String email, Double credito, Tarjeta tarjeta, CuentaBancaria cuentaBancaria) {
-        this.id = id;
+    public Usuario(String nombre, String clave, String email, Double credito, Tarjeta tarjeta, CuentaBancaria cuentaBancaria) {
         this.nombre = nombre;
         this.clave = clave;
         this.email = email;

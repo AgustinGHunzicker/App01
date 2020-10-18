@@ -1,10 +1,15 @@
 package com.example.myapplication.model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
+@Entity
 public class Plato implements Serializable {
 
+    @PrimaryKey(autoGenerate = true)
     private Integer id;
     private String title;
     private String description;
@@ -13,8 +18,7 @@ public class Plato implements Serializable {
 
     public Plato() {}
 
-    public Plato(Integer id, String title, String description, Double price, Integer calories) {
-        this.id = id;
+    public Plato(String title, String description, Double price, Integer calories) {
         this.title = title;
         this.description = description;
         this.price = price;
