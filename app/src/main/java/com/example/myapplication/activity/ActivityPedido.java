@@ -2,6 +2,7 @@ package com.example.myapplication.activity;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.AsyncTask;
@@ -108,6 +109,15 @@ public class ActivityPedido extends AppCompatActivity {
                             R.string.successfulOrder,
                             Toast.LENGTH_LONG).show();
                     new taskSavePlate().execute("Succesfull");
+                    //TODO cuando se haga la Base de datos
+                    //mandar pedido a base de datos
+                    textAddress.setText("");
+                    textEmailAddress.setText("");
+                    radioButtonTakeAway.setChecked(false);
+                    radioButtonEnvio.setChecked(false);
+                    platosEnPedido.clear();
+                    plateAdapter.clear();
+                    listPlates.setAdapter(plateAdapter);
                 }
             }
         });
