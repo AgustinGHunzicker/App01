@@ -35,6 +35,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/labelWelcome"
                 android:textSize="40sp" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="177dp"
+                android:layout_height="146dp"
+                app:srcCompat="@drawable/sendmeal" />
         </LinearLayout>
 
     </LinearLayout>

@@ -37,7 +37,7 @@
     <string name="ToastSuccessfulTransaction">Carga exitosa</string>
 
     <!-- Pantalla de inicio -->
-    <string name="labelWelcome">Bienvenido!</string>
+    <string name="labelWelcome">Sendmeal-fast!</string>
 
     <string name="menuRegister">Registarme</string>
     <string name="menuCreateItem">Crear ítem</string>
