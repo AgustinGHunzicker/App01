@@ -1,5 +1,7 @@
 package com.example.myapplication.activity;
 
+import android.content.Context;
+
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
@@ -16,8 +18,8 @@ public abstract class AppDataBase extends RoomDatabase {
 
     //para crear la instancia de la BD
 
-    //AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-      //      AppDatabase.class, "database-name").build();
+
+
 
 
 }
