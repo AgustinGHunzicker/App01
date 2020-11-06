@@ -1,17 +1,20 @@
 package com.example.myapplication.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import com.example.myapplication.R;
 import com.example.myapplication.model.Plato;
 
 public class ActivityNuevoPlato extends AppCompatActivity {
+    AppDataBase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,11 @@ public class ActivityNuevoPlato extends AppCompatActivity {
             Button variables
          */
         final Button btnSave = (Button) findViewById(R.id.btnSave);
+
+
+        //Instancia de la Bd
+        db = Room.databaseBuilder(getApplicationContext(),
+         AppDataBase.class, "midb").allowMainThreadQueries().build();
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +81,19 @@ public class ActivityNuevoPlato extends AppCompatActivity {
                     newPlate.setPrice(Double.parseDouble(pricePlate));
                     newPlate.setCalories(Integer.parseInt(caloriesPlate));
                     Toast.makeText(getApplicationContext(),R.string.ToastSuccessfulTransactionPlate,Toast.LENGTH_LONG).show();
+
+                    //Insertar en la bd Dao
+
+                    long result = db.platoDao().insertar(newPlate);
+                    if(result>0){
+                        //correcto
+                        Log.d("DB", "Se guardo en la DB");
+
+                    }else{
+                        //no se inserto correctamente
+                        Log.d("DB", "No se guardo en la DB");
+                    }
+
                 }
             }
         });

@@ -40,6 +40,7 @@ public class MyFirstReceiver extends BroadcastReceiver {
             NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, name, NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager notificationManager = contexto.getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(notificationChannel);
+            //registra la aplicacion en un canal
         }
     }
 

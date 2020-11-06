@@ -13,7 +13,7 @@ import java.util.List;
 @Dao
 public interface  DAOPlato {
     @Insert
-    void insertar(Plato plato);
+    long insertar(Plato plato); //Devuelve 1 cuando es correcto y 0 cuando no
 
     @Delete
     void borrar(Plato plato);
