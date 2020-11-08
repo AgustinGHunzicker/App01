@@ -1,27 +1,62 @@
-package com.example.myapplication.pruebaBaseDatos;
+package com.example.myapplication.database;
 
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
+
 import com.example.myapplication.dao.DAOCuentaBancaria;
 import com.example.myapplication.dao.DAOPedido;
+import com.example.myapplication.dao.DAOPedidoConPlatos;
 import com.example.myapplication.dao.DAOPlato;
 import com.example.myapplication.dao.DAOTarjeta;
 import com.example.myapplication.dao.DAOUsuario;
 import com.example.myapplication.model.CuentaBancaria;
 import com.example.myapplication.model.Pedido;
+import com.example.myapplication.model.PedidoConPlatos;
 import com.example.myapplication.model.Plato;
 import com.example.myapplication.model.Tarjeta;
 import com.example.myapplication.model.Usuario;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+
+abstract class AppDatabase extends RoomDatabase {
+    private static volatile AppDatabase _INSTANCE;
+
+    public abstract DAOPlato daoPlato();
+    public abstract DAOPedido daoPedido();
+    public abstract DAOPedidoConPlatos daoPedidoConPlatos();
+    public abstract DAOCuentaBancaria daoCuentaBancaria();
+    public abstract DAOTarjeta daoTarjeta();
+    public abstract DAOUsuario daoUsuario();
+
+    private static final int NUMBER_OF_THREADS = 1;
+    static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+
+    static AppDatabase getInstance(final Context context) {
+        if (_INSTANCE == null) {
+            synchronized (AppDatabase.class) {
+                if (_INSTANCE == null) {
+                    _INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "AppDatabase").build();
+                }
+            }
+        }
+        return _INSTANCE;
+    }
+}
+
 
 public class AppRepository implements OnResultCallback {
 
     private static AppRepository _INSTANCE= null;
     private DAOPlato daoPlato;
     private DAOPedido daoPedido;
+    private DAOPedidoConPlatos daoPedidoConPlatos;
     private DAOCuentaBancaria daoCuentaBancaria;
     private DAOTarjeta daoTarjeta;
     private DAOUsuario daoUsuario;
@@ -31,6 +66,7 @@ public class AppRepository implements OnResultCallback {
         AppDatabase db = AppDatabase.getInstance(context);
         daoPlato = db.daoPlato();
         daoPedido = db.daoPedido();
+        daoPedidoConPlatos = db.daoPedidoConPlatos();
         daoCuentaBancaria = db.daoCuentaBancaria();
         daoTarjeta = db.daoTarjeta();
         daoUsuario = db.daoUsuario();
@@ -74,6 +110,15 @@ public class AppRepository implements OnResultCallback {
             @Override
             public void run() {
                 daoPedido.insertar(pedido);
+            }
+        });
+    }
+
+    public void insertarPedidoConPlatos(final PedidoConPlatos pedidoConPlatos) {
+        AppDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                daoPedidoConPlatos.insertar(pedidoConPlatos);
             }
         });
     }
@@ -194,4 +239,3 @@ class BuscarPedido extends AsyncTask<String, Void, List<Pedido>> {
         callback.onResult(pedidos);
     }
 }
-

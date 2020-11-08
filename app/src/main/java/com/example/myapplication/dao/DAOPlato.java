@@ -14,7 +14,7 @@ import java.util.List;
 @Dao
 public interface  DAOPlato {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertar(Plato plato); //Devuelve 1 cuando es correcto y 0 cuando no
+    void insertar(Plato plato);
 
     @Delete
     void borrar(Plato plato);

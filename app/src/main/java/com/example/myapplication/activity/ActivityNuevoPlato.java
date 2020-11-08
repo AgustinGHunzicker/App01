@@ -1,21 +1,17 @@
 package com.example.myapplication.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import com.example.myapplication.R;
+import com.example.myapplication.database.OnResultCallback;
 import com.example.myapplication.model.Plato;
-import com.example.myapplication.pruebaBaseDatos.AppDatabase;
-import com.example.myapplication.pruebaBaseDatos.AppRepository;
-import com.example.myapplication.pruebaBaseDatos.OnResultCallback;
-
+import com.example.myapplication.database.AppRepository;
 import java.util.List;
 
 public class ActivityNuevoPlato extends AppCompatActivity implements OnResultCallback {
@@ -39,18 +35,10 @@ public class ActivityNuevoPlato extends AppCompatActivity implements OnResultCal
             Button variables
          */
         final Button btnSave = (Button) findViewById(R.id.btnSave);
-        final Button btnPrueba = (Button) findViewById(R.id.btnPrueba);
 
 
         //Instancia de la Bd
         repository = AppRepository.getInstance(this.getApplicationContext(),this);
-
-        btnPrueba.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                repository.buscarPlatos();
-            }
-        });
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override

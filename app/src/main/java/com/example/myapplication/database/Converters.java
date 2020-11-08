@@ -1,8 +1,7 @@
-package com.example.myapplication.convertes;
+package com.example.myapplication.database;
 
 import androidx.room.TypeConverter;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 public class Converters {

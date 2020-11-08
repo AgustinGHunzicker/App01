@@ -1,6 +1,4 @@
-package com.example.myapplication.pruebaBaseDatos;
-
-import com.example.myapplication.model.Plato;
+package com.example.myapplication.database;
 
 import java.util.List;
 

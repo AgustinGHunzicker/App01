@@ -21,11 +21,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.adapters.PlatoAdapter;
 import com.example.myapplication.model.Pedido;
+import com.example.myapplication.model.PedidoConPlatos;
 import com.example.myapplication.model.Plato;
-import com.example.myapplication.pruebaBaseDatos.AppRepository;
-import com.example.myapplication.pruebaBaseDatos.OnResultCallback;
+import com.example.myapplication.notifications.MyFirstReceiver;
+import com.example.myapplication.database.AppRepository;
+import com.example.myapplication.database.OnResultCallback;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ActivityPedido extends AppCompatActivity implements OnResultCallback {
@@ -115,7 +118,6 @@ public class ActivityPedido extends AppCompatActivity implements OnResultCallbac
                 }
                 else{
 
-
                     Pedido pedido = new Pedido();
                     pedido.setCantidadPlatos(Integer.parseInt(textCantidadProductos.getText().toString()));
                     pedido.setDireccion(textAddress.getText().toString());
@@ -123,8 +125,20 @@ public class ActivityPedido extends AppCompatActivity implements OnResultCallbac
                     pedido.setPrice(Double.parseDouble(textTotalPrice.getText().toString().substring(2)));
                     if(radioButtonEnvio.isChecked()) pedido.setSeEnvia(true);
                     else pedido.setSeEnvia(false);
+                    pedido.setFechaPedido(new Date());
 
                     repository.insertarPedido(pedido);
+
+
+                    //TODO ver si funciona esto
+                    //Sino funca reever las entidades (https://developer.android.com/training/data-storage/room/relationships#many-to-many)
+                    for(Plato p:platosEnPedido){
+                        PedidoConPlatos pedidoConPlatos = new PedidoConPlatos();
+                        pedidoConPlatos.setIdPedido(pedido.getId());
+                        pedidoConPlatos.setIdPedido(p.getId());
+                        repository.insertarPedidoConPlatos(pedidoConPlatos);
+                    }
+
 
                     Log.d("ASK", "Successful order");
                     Toast.makeText(getApplicationContext(),
@@ -134,7 +148,7 @@ public class ActivityPedido extends AppCompatActivity implements OnResultCallbac
 
                     Log.d("probando PEDIDO", pedido.toString());
 
-                    //TODO agregar las relaciones con usuario y plato
+                    //TODO agregar las relacion con usuario
                     //mandar pedido a base de datos
 
                     textTotalPrice.setText("");
@@ -151,8 +165,7 @@ public class ActivityPedido extends AppCompatActivity implements OnResultCallbac
         });
     }
 
-    @SuppressLint("SetTextI18n")
-    @Override
+    @SuppressLint("SetTextI18n") @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);

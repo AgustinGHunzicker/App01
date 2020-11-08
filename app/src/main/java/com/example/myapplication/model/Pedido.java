@@ -8,18 +8,15 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import static androidx.room.ForeignKey.CASCADE;
 
-@Entity//(foreignKeys = @ForeignKey(entity = Usuario.class, parentColumns = "id", childColumns = "idUsuario", onDelete = CASCADE))
+@Entity(foreignKeys = @ForeignKey(entity = Usuario.class, parentColumns = "id", childColumns = "idUsuario", onDelete = CASCADE))
 public class Pedido implements Serializable {
     /* ---- RELACIONES -----*/
-    @Ignore
     @ColumnInfo(name="idUsuario")
     private Integer idUsuario;
-    //TODO esto es una lista many to many
-    @Ignore//@ColumnInfo(name="idPlato")
-    private Integer idPlato;
 
     /* ---- ATRIBUTOS -----*/
     @PrimaryKey(autoGenerate = true)
@@ -37,6 +34,9 @@ public class Pedido implements Serializable {
     private Double price;
     @ColumnInfo(name="cantidadPlatos")
     private Integer cantidadPlatos;
+    //TODO ver si agrega la hora tambien, si no lo hace agregar un atributo con esa info
+    @ColumnInfo(name="momentoPedido")
+    private Date fechaPedido;
 
     public Pedido() { }
 
@@ -46,14 +46,6 @@ public class Pedido implements Serializable {
 
     public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
-    }
-
-    public Integer getIdPlato() {
-        return idPlato;
-    }
-
-    public void setIdPlato(Integer idPlato) {
-        this.idPlato = idPlato;
     }
 
     @NonNull
@@ -105,17 +97,25 @@ public class Pedido implements Serializable {
         this.cantidadPlatos = cantidadPlatos;
     }
 
+    public Date getFechaPedido() {
+        return fechaPedido;
+    }
+
+    public void setFechaPedido(Date fechaPedido) {
+        this.fechaPedido = fechaPedido;
+    }
+
     @Override
     public String toString() {
         return "Pedido{" +
                 "idUsuario=" + idUsuario +
-                ", idPlato=" + idPlato +
                 ", id=" + id +
                 ", email='" + email + '\'' +
                 ", seEnvia=" + seEnvia +
                 ", direccion='" + direccion + '\'' +
                 ", price=" + price +
                 ", cantidadPlatos=" + cantidadPlatos +
+                ", fechaPedido=" + fechaPedido +
                 '}';
     }
 }

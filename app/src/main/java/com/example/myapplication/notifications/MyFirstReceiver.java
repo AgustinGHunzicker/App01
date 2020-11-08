@@ -1,4 +1,4 @@
-package com.example.myapplication.activity;
+package com.example.myapplication.notifications;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -57,4 +57,13 @@ public class MyFirstReceiver extends BroadcastReceiver {
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(contexto);
         notificationManagerCompat.notify(NOTIFICACION_ID,myBuilder.build());
     }
+}
+
+class MyNotificationPublisher extends BroadcastReceiver {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        String identificador = intent.getStringExtra("Identificador".toString());
+        Log.i("broadcast", "Ingreso al escuchador");
+    }
+
 }
