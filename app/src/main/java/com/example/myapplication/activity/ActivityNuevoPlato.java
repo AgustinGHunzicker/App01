@@ -12,9 +12,15 @@ import androidx.room.Room;
 
 import com.example.myapplication.R;
 import com.example.myapplication.model.Plato;
+import com.example.myapplication.pruebaBaseDatos.AppDatabase;
+import com.example.myapplication.pruebaBaseDatos.AppRepository;
+import com.example.myapplication.pruebaBaseDatos.OnResultCallback;
 
-public class ActivityNuevoPlato extends AppCompatActivity {
-    AppDataBase db;
+import java.util.List;
+
+public class ActivityNuevoPlato extends AppCompatActivity implements OnResultCallback {
+
+    AppRepository repository = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +39,18 @@ public class ActivityNuevoPlato extends AppCompatActivity {
             Button variables
          */
         final Button btnSave = (Button) findViewById(R.id.btnSave);
+        final Button btnPrueba = (Button) findViewById(R.id.btnPrueba);
 
 
         //Instancia de la Bd
-        db = Room.databaseBuilder(getApplicationContext(),
-         AppDataBase.class, "midb").allowMainThreadQueries().build();
+        repository = AppRepository.getInstance(getApplicationContext(),this);
+
+        btnPrueba.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                repository.buscarPlatos();
+            }
+        });
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,24 +93,18 @@ public class ActivityNuevoPlato extends AppCompatActivity {
                     newPlate.setDescription(descriptionPlate);
                     newPlate.setPrice(Double.parseDouble(pricePlate));
                     newPlate.setCalories(Integer.parseInt(caloriesPlate));
+
+
+                    repository.insertar(newPlate, newPlate.getClass());
+
                     Toast.makeText(getApplicationContext(),R.string.ToastSuccessfulTransactionPlate,Toast.LENGTH_LONG).show();
-
-                    //Insertar en la bd Dao
-
-                    long result = db.platoDao().insertar(newPlate);
-                    if(result>0){
-                        //correcto
-                        Log.d("DB", "Se guardo en la DB");
-
-                    }else{
-                        //no se inserto correctamente
-                        Log.d("DB", "No se guardo en la DB");
-                    }
-
                 }
             }
         });
     }
 
-
+    public void onResult(List result) {
+        // Vamos a obtener una Lista de items como resultado cuando finalize
+        Toast.makeText(ActivityNuevoPlato.this, "AsynTask exitosa! Lista de tamaño: "+result.size(), Toast.LENGTH_SHORT).show();
+    }
 }

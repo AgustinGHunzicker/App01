@@ -1,6 +1,9 @@
 package com.example.myapplication.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -9,25 +12,21 @@ import java.io.Serializable;
 @Entity
 public class Usuario implements Serializable {
 
+    /* ---- ATRIBUTOS -----*/
     @PrimaryKey(autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name="id")
     private int id;
+    @ColumnInfo(name="nombre")
     private String nombre;
+    @ColumnInfo(name="clave")
     private String clave;
+    @ColumnInfo(name="email")
     private String email;
+    @ColumnInfo(name="credito")
     private Double credito;
-    private Tarjeta tarjeta;
-    private CuentaBancaria cuentaBancaria;
 
     public Usuario() {}
-
-    public Usuario(String nombre, String clave, String email, Double credito, Tarjeta tarjeta, CuentaBancaria cuentaBancaria) {
-        this.nombre = nombre;
-        this.clave = clave;
-        this.email = email;
-        this.credito = credito;
-        this.tarjeta = tarjeta;
-        this.cuentaBancaria = cuentaBancaria;
-    }
 
     public int getId() {
         return id;
@@ -67,21 +66,5 @@ public class Usuario implements Serializable {
 
     public void setCredito(Double credito) {
         this.credito = credito;
-    }
-
-    public Tarjeta getTarjeta() {
-        return tarjeta;
-    }
-
-    public void setTarjeta(Tarjeta tarjeta) {
-        this.tarjeta = tarjeta;
-    }
-
-    public CuentaBancaria getCuentaBancaria() {
-        return cuentaBancaria;
-    }
-
-    public void setCuentaBancaria(CuentaBancaria cuentaBancaria) {
-        this.cuentaBancaria = cuentaBancaria;
     }
 }

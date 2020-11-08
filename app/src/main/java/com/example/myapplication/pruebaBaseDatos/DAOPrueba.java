@@ -1,4 +1,4 @@
-package com.example.myapplication.dao;
+package com.example.myapplication.pruebaBaseDatos;
 
 import com.example.myapplication.model.Plato;
 

@@ -20,12 +20,17 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.adapters.PlatoAdapter;
+import com.example.myapplication.model.Pedido;
 import com.example.myapplication.model.Plato;
+import com.example.myapplication.pruebaBaseDatos.AppRepository;
+import com.example.myapplication.pruebaBaseDatos.OnResultCallback;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityPedido extends AppCompatActivity {
+public class ActivityPedido extends AppCompatActivity implements OnResultCallback {
+
+    AppRepository repository = null;
 
     private EditText textEmailAddress;
     private EditText textAddress;
@@ -43,6 +48,8 @@ public class ActivityPedido extends AppCompatActivity {
     private static final int REQUEST_CODE=222;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        repository = AppRepository.getInstance(getApplicationContext(),this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedido);
 
@@ -66,9 +73,12 @@ public class ActivityPedido extends AppCompatActivity {
         btnConfirmarPedido.setEnabled(false);
         btnAddPlate = findViewById(R.id.btnAddPlate);
         listPlates = findViewById(R.id.listPlates);
-        addListenerBtn();
-        platosEnPedido = new ArrayList<>();
         precioTotalPedido = 0.0d;
+
+        addListenerBtn();
+
+        platosEnPedido = new ArrayList<>();
+
         plateAdapter = new PlatoAdapter(this, platosEnPedido);
         listPlates.setAdapter(plateAdapter);
     }
@@ -104,20 +114,42 @@ public class ActivityPedido extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                 }
                 else{
+
+
+                    Pedido pedido = new Pedido();
+                    //pedido.setCantidadPlatos(Integer.parseInt(textCantidadProductos.getText().toString()));
+                    pedido.setDireccion(textAddress.getText().toString());
+                    pedido.setEmail(textEmailAddress.getText().toString());
+                    //pedido.setPrice(Double.parseDouble(textTotalPrice.getText().toString().substring(1)));
+                    if(radioButtonEnvio.isChecked()) pedido.setSeEnvia(true);
+                    else pedido.setSeEnvia(false);
+
+
                     Log.d("ASK", "Successful order");
                     Toast.makeText(getApplicationContext(),
                             R.string.successfulOrder,
                             Toast.LENGTH_LONG).show();
                     new taskSavePlate().execute("Succesfull");
-                    //TODO cuando se haga la Base de datos
+
+                    repository.insertarPedido(pedido);
+
+                    //TODO agregar las relaciones con usuario y plato
                     //mandar pedido a base de datos
+
+
+
+
+
+
+                    textTotalPrice.setText("");
+                    textCantidadProductos.setText("");
                     textAddress.setText("");
                     textEmailAddress.setText("");
                     radioButtonTakeAway.setChecked(false);
                     radioButtonEnvio.setChecked(false);
-                    platosEnPedido.clear();
-                    plateAdapter.clear();
-                    listPlates.setAdapter(plateAdapter);
+                    //platosEnPedido.clear();
+                    //plateAdapter.clear();
+                    //listPlates.setAdapter(plateAdapter);
                 }
             }
         });
@@ -146,6 +178,11 @@ public class ActivityPedido extends AppCompatActivity {
         }
         else
             Log.d("TagActivity", "fallo return de activity");
+    }
+
+    @Override
+    public void onResult(List result) {
+        Toast.makeText(ActivityPedido.this, "AsynTask exitosa!", Toast.LENGTH_SHORT).show();
     }
 
     class taskSavePlate extends AsyncTask<String, Void, String> {

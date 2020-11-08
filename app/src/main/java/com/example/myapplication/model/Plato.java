@@ -1,5 +1,7 @@
 package com.example.myapplication.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -7,23 +9,22 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 @Entity
-public class Plato implements Serializable {
-
+public class Plato implements Serializable{
+    /* ---- ATRIBUTOS -----*/
     @PrimaryKey(autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name="id")
     private Integer id;
+    @ColumnInfo(name="title")
     private String title;
+    @ColumnInfo(name="description")
     private String description;
+    @ColumnInfo(name="price")
     private Double price;
+    @ColumnInfo(name="calories")
     private Integer calories;
 
     public Plato() {}
-
-    public Plato(String title, String description, Double price, Integer calories) {
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.calories = calories;
-    }
 
     public Integer getId() {
         return id;

@@ -71,5 +71,12 @@
         android:layout_height="wrap_content"
         android:text="@string/btnSave" />
 
+    <Button
+        android:id="@+id/btnPrueba"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PROBAR BASE MAN" />
+
 
 </LinearLayout>

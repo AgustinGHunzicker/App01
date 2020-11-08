@@ -12,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.myapplication.adapters.PlatoRecyclerAdapter;
-import com.example.myapplication.dao.DAOPrueba;
+import com.example.myapplication.pruebaBaseDatos.DAOPrueba;
 import com.example.myapplication.R;
 
 public class ActivityPlateRecycler extends AppCompatActivity {
