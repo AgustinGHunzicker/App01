@@ -48,7 +48,7 @@ public class ActivityPedido extends AppCompatActivity implements OnResultCallbac
     private static final int REQUEST_CODE=222;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        repository = AppRepository.getInstance(getApplicationContext(),this);
+        repository = AppRepository.getInstance(this.getApplicationContext(),this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedido);
@@ -117,13 +117,14 @@ public class ActivityPedido extends AppCompatActivity implements OnResultCallbac
 
 
                     Pedido pedido = new Pedido();
-                    //pedido.setCantidadPlatos(Integer.parseInt(textCantidadProductos.getText().toString()));
+                    pedido.setCantidadPlatos(Integer.parseInt(textCantidadProductos.getText().toString()));
                     pedido.setDireccion(textAddress.getText().toString());
                     pedido.setEmail(textEmailAddress.getText().toString());
-                    //pedido.setPrice(Double.parseDouble(textTotalPrice.getText().toString().substring(1)));
+                    pedido.setPrice(Double.parseDouble(textTotalPrice.getText().toString().substring(2)));
                     if(radioButtonEnvio.isChecked()) pedido.setSeEnvia(true);
                     else pedido.setSeEnvia(false);
 
+                    repository.insertarPedido(pedido);
 
                     Log.d("ASK", "Successful order");
                     Toast.makeText(getApplicationContext(),
@@ -131,15 +132,10 @@ public class ActivityPedido extends AppCompatActivity implements OnResultCallbac
                             Toast.LENGTH_LONG).show();
                     new taskSavePlate().execute("Succesfull");
 
-                    repository.insertarPedido(pedido);
+                    Log.d("probando PEDIDO", pedido.toString());
 
                     //TODO agregar las relaciones con usuario y plato
                     //mandar pedido a base de datos
-
-
-
-
-
 
                     textTotalPrice.setText("");
                     textCantidadProductos.setText("");
@@ -147,9 +143,9 @@ public class ActivityPedido extends AppCompatActivity implements OnResultCallbac
                     textEmailAddress.setText("");
                     radioButtonTakeAway.setChecked(false);
                     radioButtonEnvio.setChecked(false);
-                    //platosEnPedido.clear();
-                    //plateAdapter.clear();
-                    //listPlates.setAdapter(plateAdapter);
+                    platosEnPedido.clear();
+                    plateAdapter.clear();
+                    listPlates.setAdapter(plateAdapter);
                 }
             }
         });

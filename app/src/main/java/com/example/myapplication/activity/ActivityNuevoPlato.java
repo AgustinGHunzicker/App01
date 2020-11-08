@@ -43,7 +43,7 @@ public class ActivityNuevoPlato extends AppCompatActivity implements OnResultCal
 
 
         //Instancia de la Bd
-        repository = AppRepository.getInstance(getApplicationContext(),this);
+        repository = AppRepository.getInstance(this.getApplicationContext(),this);
 
         btnPrueba.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -195,6 +195,3 @@ class BuscarPedido extends AsyncTask<String, Void, List<Pedido>> {
     }
 }
 
-
-
-

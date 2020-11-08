@@ -104,4 +104,18 @@ public class Pedido implements Serializable {
     public void setCantidadPlatos(Integer cantidadPlatos) {
         this.cantidadPlatos = cantidadPlatos;
     }
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "idUsuario=" + idUsuario +
+                ", idPlato=" + idPlato +
+                ", id=" + id +
+                ", email='" + email + '\'' +
+                ", seEnvia=" + seEnvia +
+                ", direccion='" + direccion + '\'' +
+                ", price=" + price +
+                ", cantidadPlatos=" + cantidadPlatos +
+                '}';
+    }
 }
