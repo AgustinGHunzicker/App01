@@ -40,12 +40,12 @@
     <string name="labelWelcome">Sendmeal-fast!</string>
 
     <string name="menuRegister">Registarme</string>
-    <string name="menuCreateItem">Crear ítem</string>
-    <string name="menuItemsList">Lista de ítems</string>ç
+    <string name="menuCreateItem">Crear plato</string>
+    <string name="menuItemsList">Lista de platos</string>ç
 
     <string name="activityRegister">REGISTRAR</string>
-    <string name="activityCreateItem">CREAR ITEM</string>
-    <string name="activityItemsList">LISTA DE ITEMS</string>
+    <string name="activityCreateItem">CREAR PLATO</string>
+    <string name="activityItemsList">LISTA DE PLATOS</string>
 
     <!-- Pantalla de nuevo plato -->
     <string name="labelNewPlate">Nuevo plato</string>

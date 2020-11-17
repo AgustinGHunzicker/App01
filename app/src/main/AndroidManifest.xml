@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.myapplication">
+    package="SendMeal.app">
 
     <application
         android:allowBackup="true"
@@ -13,18 +13,18 @@
         android:usesCleartextTraffic="true">
 
 
-        <activity android:name=".activity.ActivityPlateRecycler" />
+        <activity android:name="app.activity.ActivityPlateRecycler" />
         <activity
-            android:name=".activity.ActivityRegistrarUsuario"
+            android:name="app.activity.ActivityRegistrarUsuario"
             android:label="SignUp" />
         <activity
-            android:name=".activity.ActivityNuevoPlato"
+            android:name="app.activity.ActivityNuevoPlato"
             android:label="SignUp" />
         <activity
-            android:name=".activity.ActivityPedido"
+            android:name="app.activity.ActivityPedido"
             android:label="SignUp" />
 
-        <activity android:name=".activity.ActivityHome">
+        <activity android:name="app.activity.ActivityHome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
