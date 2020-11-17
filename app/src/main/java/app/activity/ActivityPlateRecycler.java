@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,11 +16,15 @@ import android.widget.Toast;
 import java.util.List;
 
 import app.adapters.PlatoRecyclerAdapter;
+import app.dao.DAOPlato;
+import app.dao.DAOUsuario;
+import app.database.AppDatabase;
 import app.database.AppRepository;
 import app.database.DatosPrueba;
 import SendMeal.app.R;
 import app.database.OnResultCallback;
 import app.model.Plato;
+import app.model.Usuario;
 
 public class ActivityPlateRecycler extends AppCompatActivity implements OnResultCallback {
     DatosPrueba daoPrueba;
@@ -52,10 +57,10 @@ public class ActivityPlateRecycler extends AppCompatActivity implements OnResult
         new DatosPrueba(this.getApplicationContext());
         repository = AppRepository.getInstance(this.getApplicationContext(),this);
         repository.buscarPlatos();
-
-
+        repository.close();
         Toolbar toolbar = findViewById(R.id.toolbarPlateRecycler);
         setSupportActionBar(toolbar);
+
     }
 
     @Override
@@ -82,7 +87,7 @@ public class ActivityPlateRecycler extends AppCompatActivity implements OnResult
         }
 
         //TODO seguir aca
-        Toast.makeText(ActivityPlateRecycler.this, "AsynTask exitosa!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(ActivityPlateRecycler.this, "AsynTask exitosa! Tamaño: "+result.size(), Toast.LENGTH_SHORT).show();
         plateAdapter = new PlatoRecyclerAdapter(this, (List<Plato>) result, addButtonAsk);//,this);
         recyclerView.setAdapter(plateAdapter);
     }

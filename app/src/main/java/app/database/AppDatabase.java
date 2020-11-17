@@ -40,7 +40,9 @@ public abstract class AppDatabase extends RoomDatabase {
         if (_INSTANCE == null) {
             synchronized (AppDatabase.class) {
                 if (_INSTANCE == null) {
-                    _INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "AppDatabase").build();
+                    _INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "AppDatabase")
+                            .allowMainThreadQueries()
+                            .build();
                 }
             }
         }

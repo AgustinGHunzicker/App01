@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import androidx.room.Room;
+
 import app.dao.DAOPedido;
 import app.dao.DAOPedidoConPlatos;
 import app.dao.DAOPlato;
@@ -14,10 +16,13 @@ import app.model.Plato;
 import app.model.Usuario;
 
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class AppRepository implements OnResultCallback {
 
     private static AppRepository _INSTANCE = null;
+    private static AppDatabase db = null;
     private final OnResultCallback callback;
     private final DAOPlato daoPlato;
     private final DAOPedido daoPedido;
@@ -27,7 +32,7 @@ public class AppRepository implements OnResultCallback {
     //private DAOTarjeta daoTarjeta;
 
     private AppRepository(final Context context, OnResultCallback callback2){
-        AppDatabase db = AppDatabase.getInstance(context);
+        db = AppDatabase.getInstance(context);
         daoPlato = db.daoPlato();
         daoPedido = db.daoPedido();
         daoPedidoConPlatos = db.daoPedidoConPlatos();
@@ -42,6 +47,11 @@ public class AppRepository implements OnResultCallback {
             _INSTANCE = new AppRepository(context, callback); // se inicializa solo 1 vez
         }
         return _INSTANCE;
+    }
+
+    public static void close(){
+        _INSTANCE = null;
+        db.close();
     }
 
 
@@ -77,8 +87,10 @@ public class AppRepository implements OnResultCallback {
 
 
     /* TAREAS ASINCRONAS */
-    public void buscarPlato(long id) { new BuscarPlatoById(daoPlato, this, id).execute();  }
-    public void buscarPlatos() { new BuscarListaPlato(daoPlato, this).execute(); }
+    public void buscarPlato(long id) {new BuscarPlatoById(daoPlato, this, id).execute();  }
+    public void buscarPlatos() {
+        new BuscarListaPlato(daoPlato, this).execute();
+    }
     public void buscarPedidos() { new BuscarListaPedido(daoPedido, this).execute(); }
 
     @Override

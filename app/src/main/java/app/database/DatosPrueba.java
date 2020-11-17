@@ -67,5 +67,7 @@ public class DatosPrueba {
         user.setClave("claveprueba");
         user.setCredito(1500d);
         daoUsuario.insertar(user);
+
+        db.close();
     }
 }
