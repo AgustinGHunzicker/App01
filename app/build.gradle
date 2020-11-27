@@ -10,7 +10,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -43,8 +43,10 @@ dependencies {
 
     //implementation "androidx.room:room-runtime:2.2.5"
     //annotationProcessor "androidx.room:room-compiler:2.2.5"
+    compile 'com.android.support:multidex:1.0.0'
 
     implementation "androidx.room:room-runtime:2.2.5"
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
     annotationProcessor "androidx.room:room-compiler:2.2.5"
     androidTestImplementation "androidx.room:room-testing:2.2.5"
 

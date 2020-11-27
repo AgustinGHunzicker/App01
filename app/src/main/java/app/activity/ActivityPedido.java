@@ -42,6 +42,7 @@ public class ActivityPedido extends AppCompatActivity implements OnResultCallbac
     private RadioButton radioButtonTakeAway;
     private Button btnAddPlate;
     private Button btnConfirmarPedido;
+    private Button btnAddLocation;
     private TextView textTotalPrice;
     private TextView textCantidadProductos;
     private ListView listPlates;
@@ -76,6 +77,7 @@ public class ActivityPedido extends AppCompatActivity implements OnResultCallbac
         btnConfirmarPedido = findViewById(R.id.buttonAskPlate);
         btnConfirmarPedido.setEnabled(false);
         btnAddPlate = findViewById(R.id.btnAddPlate);
+        btnAddLocation = findViewById(R.id.buttonAddLocation);
         listPlates = findViewById(R.id.listPlates);
         precioTotalPedido = 0.0d;
 
@@ -95,6 +97,14 @@ public class ActivityPedido extends AppCompatActivity implements OnResultCallbac
                 i.putExtra("addButtonAsk", true);
                 startActivityForResult(i, REQUEST_CODE);
 
+            }
+        });
+
+        btnAddLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              Intent i = new Intent(getApplicationContext(),MapsActivity.class);
+              startActivity(i);
             }
         });
 

@@ -1,4 +1,6 @@
 <resources>
+    <!-- clave de mapa -->
+    <string name="google_maps_key">AIzaSyCuYHwH_F4qzlVLJYDJWIR5FZWS_eN5loA</string>
     <!-- Pantalla de registro de usuario -->
     <string name="app_name">SendMeal</string>
     <string name="labelUserName">Nombre</string>
@@ -59,7 +61,6 @@
     <string name="ToastSuccessfulTransactionPlate">El plato ha sido creado con éxito</string>
 
 
-
     <!-- Pantalla de visualizar los platos -->
     <string name="btnVer">Ver</string>
     <string name="newPedido">Nuevo pedido</string>
@@ -75,5 +76,7 @@
     <string name="failedOrder">Revisar los campos ingresados</string>
     <string name="successfulOrder">Pedido exitoso!</string>
     <string name="lblcantidadproductos">Cantidad productos: </string>
+    <string name="title_activity_maps">Map</string>
+    <string name="btnAddLocation">Agregar Ubicación</string>
 
 </resources>
