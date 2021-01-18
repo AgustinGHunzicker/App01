@@ -12,10 +12,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="@string/google_maps_key" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -41,7 +37,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="app.activity.MapsActivity"
+            android:name="app.activity.ActivityMap"
             android:label="@string/title_activity_maps"></activity>
         <activity android:name="app.activity.ActivityPlateRecycler" />
         <activity

@@ -21,7 +21,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import SendMeal.app.R;
 import app.adapters.PlatoAdapter;
 import app.model.Pedido;
-import app.model.PedidoConPlatos;
 import app.model.Plato;
 import app.notifications.MyFirstReceiver;
 import app.database.AppRepository;
@@ -29,7 +28,6 @@ import app.database.OnResultCallback;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ActivityPedido extends AppCompatActivity implements OnResultCallback {
@@ -103,7 +101,7 @@ public class ActivityPedido extends AppCompatActivity implements OnResultCallbac
         btnAddLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              Intent i = new Intent(getApplicationContext(),MapsActivity.class);
+              Intent i = new Intent(getApplicationContext(), ActivityMap.class);
               startActivity(i);
             }
         });
