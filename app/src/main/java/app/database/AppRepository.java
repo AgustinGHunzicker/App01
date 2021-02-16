@@ -24,10 +24,10 @@ public class AppRepository implements OnResultCallback {
     private static AppRepository _INSTANCE = null;
     private static AppDatabase db = null;
     private final OnResultCallback callback;
-    private final DAOPlato daoPlato;
-    private final DAOPedido daoPedido;
-    private final DAOPedidoConPlatos daoPedidoConPlatos;
-    private final DAOUsuario daoUsuario;
+    protected final DAOPlato daoPlato;
+    protected final DAOPedido daoPedido;
+    protected final DAOPedidoConPlatos daoPedidoConPlatos;
+    protected final DAOUsuario daoUsuario;
 
     private AppRepository(final Context context, OnResultCallback callback2){
         db = AppDatabase.getInstance(context);
@@ -58,6 +58,7 @@ public class AppRepository implements OnResultCallback {
             public void run() { daoPlato.insertar(plato);     }
         });
     }
+
     public void insertarUsuario(final Usuario usuario){
         AppDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override

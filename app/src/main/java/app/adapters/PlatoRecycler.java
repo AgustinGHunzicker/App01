@@ -14,7 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import SendMeal.app.R;
 import app.activity.ActivityPedido;
-import app.activity.ActivityPlateRecycler;
+import app.activity.ActivityPlatos;
 import app.model.Plato;
 import java.util.List;
 
@@ -24,16 +24,15 @@ import java.util.List;
  - El adaptador permite el acceso a los elementos de datos
  - Este también es responsable de crear una vista para cada elemento en la colección de datos.
  */
-public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdapter.ViewHolderPlato> {
+public class PlatoRecycler extends RecyclerView.Adapter<PlatoRecycler.ViewHolderPlato> {
 
-    private final ActivityPlateRecycler activityPlateRecycler;
+    private final ActivityPlatos activityPlatos;
     private final List<Plato> plateList;
     private final Boolean addButtonAsk;
 
-    public PlatoRecyclerAdapter(ActivityPlateRecycler activityPlateRecycler,
-                                List<Plato> plateListParameter, Boolean addButtonAsk){
+    public PlatoRecycler(ActivityPlatos activityPlatos, List<Plato> plateListParameter, Boolean addButtonAsk){
 
-        this.activityPlateRecycler = activityPlateRecycler;
+        this.activityPlatos = activityPlatos;
         this.plateList = plateListParameter;
         this.addButtonAsk = addButtonAsk;
     }
@@ -111,11 +110,11 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
             @Override
             public void onClick(View view) {
                 Plato plato = plateList.get(plateHolder.getAdapterPosition());
-                Intent intent = new Intent(activityPlateRecycler, ActivityPedido.class);
+                Intent intent = new Intent(activityPlatos, ActivityPedido.class);
                 intent.putExtra("plato", plato);
-                activityPlateRecycler.getIntent().getSerializableExtra("plato");
-                activityPlateRecycler.setResult(Activity.RESULT_OK, intent);
-                activityPlateRecycler.finish();
+                activityPlatos.getIntent().getSerializableExtra("plato");
+                activityPlatos.setResult(Activity.RESULT_OK, intent);
+                activityPlatos.finish();
             }
         });
     }

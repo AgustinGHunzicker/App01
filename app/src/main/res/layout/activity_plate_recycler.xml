@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
-    tools:context="app.activity.ActivityPlateRecycler">
+    tools:context="app.activity.ActivityPlatos">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarPlateRecycler"

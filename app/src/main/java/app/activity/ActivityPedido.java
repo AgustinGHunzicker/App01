@@ -31,40 +31,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActivityPedido extends AppCompatActivity implements OnResultCallback {
+    EditText textEmailAddress;
+    EditText textAddress;
+    RadioButton radioButtonEnvio;
+    RadioButton radioButtonTakeAway;
+    Button btnAddPlate;
+    Button btnConfirmarPedido;
+    Button btnAddLocation;
+    TextView textTotalPrice;
+    TextView textCantidadProductos;
 
-    AppRepository repository = null;
+    private AppRepository repository = null;
 
-    private EditText textEmailAddress;
-    private EditText textAddress;
-    private RadioButton radioButtonEnvio;
-    private RadioButton radioButtonTakeAway;
-    private Button btnAddPlate;
-    private Button btnConfirmarPedido;
-    private Button btnAddLocation;
-    private TextView textTotalPrice;
-    private TextView textCantidadProductos;
     private ListView listPlates;
     private List<Plato> platosEnPedido;
     private Double precioTotalPedido;
-    private PlatoAdapter plateAdapter;
 
     private static final int REQUEST_CODE=222;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        repository = AppRepository.getInstance(this.getApplicationContext(),this);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedido);
 
-        BroadcastReceiver br = new MyFirstReceiver();
-
-        IntentFilter filtro = new IntentFilter();
-        filtro.addAction(MyFirstReceiver.OFERTA);
-        getApplication().getApplicationContext().registerReceiver(br, filtro);
-
-        Intent servicio = new Intent(this, taskSavePlate.class);
-        servicio.putExtra("nombrePlato", "algo");
-        startService(servicio);
+        repository = AppRepository.getInstance(this.getApplicationContext(),this);
 
         textEmailAddress = findViewById(R.id.textEmailAddress);
         textAddress = findViewById(R.id.textAddress);
@@ -79,19 +68,27 @@ public class ActivityPedido extends AppCompatActivity implements OnResultCallbac
         listPlates = findViewById(R.id.listPlates);
         precioTotalPedido = 0.0d;
 
+        BroadcastReceiver br = new MyFirstReceiver();
+
+        IntentFilter filtro = new IntentFilter();
+        filtro.addAction(MyFirstReceiver.OFERTA);
+        getApplication().getApplicationContext().registerReceiver(br, filtro);
+
+        Intent servicio = new Intent(this, taskSavePlate.class);
+        servicio.putExtra("nombrePlato", "algo");
+        startService(servicio);
+
         addListenerBtn();
 
         platosEnPedido = new ArrayList<>();
-
-        plateAdapter = new PlatoAdapter(this, platosEnPedido);
-        listPlates.setAdapter(plateAdapter);
+        listPlates.setAdapter(new PlatoAdapter(this, platosEnPedido));
     }
 
     private void addListenerBtn(){
         btnAddPlate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), ActivityPlateRecycler.class);
+                Intent i = new Intent(getApplicationContext(), ActivityPlatos.class);
                 i.putExtra("addButtonAsk", true);
                 startActivityForResult(i, REQUEST_CODE);
 
@@ -156,8 +153,7 @@ public class ActivityPedido extends AppCompatActivity implements OnResultCallbac
                     radioButtonTakeAway.setChecked(false);
                     radioButtonEnvio.setChecked(false);
                     platosEnPedido.clear();
-                    plateAdapter.clear();
-                    listPlates.setAdapter(plateAdapter);
+                    listPlates.setAdapter(new PlatoAdapter(ActivityPedido.this, new ArrayList<Plato>()));
                 }
             }
         });
@@ -174,7 +170,9 @@ public class ActivityPedido extends AppCompatActivity implements OnResultCallbac
 
                 assert data != null;
                 Plato plato = (Plato) data.getSerializableExtra("plato");
-                plateAdapter.addPlato(plato);
+                platosEnPedido.add(plato);
+                listPlates.setAdapter(new PlatoAdapter(ActivityPedido.this, platosEnPedido));
+
                 if(platosEnPedido.size() > 0) btnConfirmarPedido.setEnabled(true);
 
                 precioTotalPedido += plato.getPrice();
