@@ -28,16 +28,12 @@ public class AppRepository implements OnResultCallback {
     private final DAOPedido daoPedido;
     private final DAOPedidoConPlatos daoPedidoConPlatos;
     private final DAOUsuario daoUsuario;
-    //private DAOCuentaBancaria daoCuentaBancaria;
-    //private DAOTarjeta daoTarjeta;
 
     private AppRepository(final Context context, OnResultCallback callback2){
         db = AppDatabase.getInstance(context);
         daoPlato = db.daoPlato();
         daoPedido = db.daoPedido();
         daoPedidoConPlatos = db.daoPedidoConPlatos();
-        //daoCuentaBancaria = db.daoCuentaBancaria();
-        //daoTarjeta = db.daoTarjeta();
         daoUsuario = db.daoUsuario();
         callback = callback2;
     }
