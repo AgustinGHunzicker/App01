@@ -10,25 +10,36 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 @Entity
-public class Plato implements Serializable{
+public class Plato implements Serializable {
     /* ---- ATRIBUTOS -----*/
     @PrimaryKey(autoGenerate = true)
     @NonNull
-    @ColumnInfo(name="id")
+    @ColumnInfo(name = "id")
     private long id;
-    @ColumnInfo(name="title")
+    @ColumnInfo(name = "title")
     private String title;
-    @ColumnInfo(name="description")
+    @ColumnInfo(name = "description")
     private String description;
-    @ColumnInfo(name="price")
+    @ColumnInfo(name = "price")
     private Double price;
-    @ColumnInfo(name="calories")
+    @ColumnInfo(name = "calories")
     private int calories;
+    @ColumnInfo(name = "url")
+    private String photoUrl;
 
-    public Plato() {}
+    public Plato() {
+    }
 
     public Long getId() {
         return id;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
     public void setId(Long id) {

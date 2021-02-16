@@ -87,7 +87,7 @@ public class ActivityPlateRecycler extends AppCompatActivity implements OnResult
         }
 
         //TODO seguir aca
-        Toast.makeText(ActivityPlateRecycler.this, "AsynTask exitosa! Tamaño: "+result.size(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(ActivityPlateRecycler.this, "AsynTask exitosa! Tamaño: "+result.size(), Toast.LENGTH_SHORT).show();
         plateAdapter = new PlatoRecyclerAdapter(this, (List<Plato>) result, addButtonAsk);//,this);
         recyclerView.setAdapter(plateAdapter);
     }
