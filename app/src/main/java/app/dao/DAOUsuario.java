@@ -7,9 +7,9 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import app.model.Usuario;
-
 import java.util.List;
+
+import app.model.Usuario;
 
 @Dao
 public interface DAOUsuario {

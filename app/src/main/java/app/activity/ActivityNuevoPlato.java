@@ -121,6 +121,8 @@ public class ActivityNuevoPlato extends AppCompatActivity implements OnResultCal
                         Uri downloadUri = task.getResult();
                         newPlate.setPhotoUrl(downloadUri.toString());
                         repository.insertarPlato(newPlate);
+                        Toast.makeText(getApplicationContext(),R.string.ToastSuccessfulTransactionPlate,Toast.LENGTH_LONG).show();
+                        finish();
                     } else {
                         // Fallo
                     }
@@ -208,8 +210,6 @@ public class ActivityNuevoPlato extends AppCompatActivity implements OnResultCal
                     newPlate.setPrice(Double.parseDouble(pricePlate));
                     newPlate.setCalories(Integer.parseInt(caloriesPlate));
                     uploadImage();
-                    Toast.makeText(getApplicationContext(),R.string.ToastSuccessfulTransactionPlate,Toast.LENGTH_LONG).show();
-                    finish();
                 }
             }
         });

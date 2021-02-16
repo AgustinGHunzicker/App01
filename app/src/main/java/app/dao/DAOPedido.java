@@ -7,10 +7,10 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import java.util.List;
+
 import app.model.Pedido;
 import app.model.Plato;
-
-import java.util.List;
 
 @Dao
 public interface DAOPedido {

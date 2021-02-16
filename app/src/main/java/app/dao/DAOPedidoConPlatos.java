@@ -1,6 +1,5 @@
 package app.dao;
 
-import androidx.room.ColumnInfo;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -8,10 +7,9 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import app.model.PedidoConPlatos;
-import app.model.Plato;
-
 import java.util.List;
+
+import app.model.PedidoConPlatos;
 
 @Dao
 public interface DAOPedidoConPlatos {

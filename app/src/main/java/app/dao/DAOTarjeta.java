@@ -7,9 +7,9 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import app.model.Tarjeta;
-
 import java.util.List;
+
+import app.model.Tarjeta;
 
 @Dao
 public interface DAOTarjeta {

@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
@@ -15,10 +16,7 @@ import app.database.Converters;
 
 import static androidx.room.ForeignKey.CASCADE;
 
-@Entity(foreignKeys = @ForeignKey(entity = Usuario.class,
-        parentColumns = "id",
-        childColumns = "idUsuario",
-        onDelete = CASCADE))
+@Entity(foreignKeys = {@ForeignKey(entity = Usuario.class, parentColumns = "id", childColumns = "idUsuario", onDelete = CASCADE)}, indices = {@Index(value = {"idUsuario"})})
 public class Tarjeta implements Serializable {
     /* ---- RELACIONES -----*/
     @ColumnInfo(name="idUsuario")

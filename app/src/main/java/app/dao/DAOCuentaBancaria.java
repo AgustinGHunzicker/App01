@@ -7,9 +7,9 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import app.model.CuentaBancaria;
-
 import java.util.List;
+
+import app.model.CuentaBancaria;
 
 @Dao
 public interface DAOCuentaBancaria {
