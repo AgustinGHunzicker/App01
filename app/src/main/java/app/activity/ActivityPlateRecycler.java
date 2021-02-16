@@ -54,9 +54,10 @@ public class ActivityPlateRecycler extends AppCompatActivity implements OnResult
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        new DatosPrueba(this.getApplicationContext());
+        daoPrueba = new DatosPrueba(this.getApplicationContext());
         repository = AppRepository.getInstance(this.getApplicationContext(),this);
         repository.buscarPlatos();
+
         repository.close();
         Toolbar toolbar = findViewById(R.id.toolbarPlateRecycler);
         setSupportActionBar(toolbar);
