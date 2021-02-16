@@ -78,5 +78,9 @@
     <string name="lblcantidadproductos">Cantidad productos: </string>
     <string name="title_activity_maps">Map</string>
     <string name="btnAddLocation">Agregar Ubicación</string>
+    <string name="upload_img">Subir imagen</string>
+    <string name="uplad_img_icon">uplad_img_icon</string>
+    <string name="camera_button_description">camera button</string>
+    <string name="image_upload_description">image_upload_description</string>
 
 </resources>

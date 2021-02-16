@@ -1,6 +1,5 @@
 package app.model;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -23,7 +22,6 @@ public class CuentaBancaria implements Serializable {
 
     /* ---- ATRIBUTOS -----*/
     @PrimaryKey(autoGenerate = true)
-    @NonNull
     @ColumnInfo(name="id")
     private long id;
     @ColumnInfo(name="cbu")
@@ -71,12 +69,7 @@ public class CuentaBancaria implements Serializable {
             return true;
         }
         else{
-            if(this.cbu.equals( ((CuentaBancaria)obj).getCbu() )){
-                return true;
-            }
-            else{
-                return false;
-            }
+            return this.cbu.equals(((CuentaBancaria) obj).getCbu());
         }
     }
 

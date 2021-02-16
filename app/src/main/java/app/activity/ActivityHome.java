@@ -1,25 +1,41 @@
 package app.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.room.Dao;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import SendMeal.app.R;
 import app.database.DatosPrueba;
 
 
 public class ActivityHome extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // ...
+        // Inicializar Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+        // Iniciar Session como usuario anónimo
+        signInAnonymously();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -27,6 +43,26 @@ public class ActivityHome extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         new DatosPrueba(this.getApplicationContext());
+    }
+
+
+    private void signInAnonymously() {
+        mAuth.signInAnonymously()
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Exito
+                            //Log.d(TAG, "signInAnonymously:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                        } else {
+                            // Error
+                            //Log.w(TAG, "signInAnonymously:failure", task.getException());
+                            Toast.makeText(ActivityHome.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     @Override

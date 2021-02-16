@@ -10,7 +10,6 @@ import androidx.room.TypeConverters;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
 import app.database.Converters;
 
@@ -24,7 +23,6 @@ public class Pedido implements Serializable {
 
     /* ---- ATRIBUTOS -----*/
     @PrimaryKey(autoGenerate = true)
-    @NonNull
     @ColumnInfo(name="id")
     private long id;
     @ColumnInfo(name="email")
@@ -107,6 +105,7 @@ public class Pedido implements Serializable {
         this.fechaPedido = fechaPedido;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Pedido{" +
@@ -127,22 +126,16 @@ public class Pedido implements Serializable {
             return true;
         }
         else{
-            if(this.getIdUsuario().equals(((Pedido)obj).getIdUsuario())
-                    && this.getEmail().equals(((Pedido)obj).getEmail())
-                    && this.getSeEnvia().equals(((Pedido)obj).getSeEnvia())
-                    && this.getDireccion().equals(((Pedido)obj).getDireccion())
-                    && this.getPrice().equals(((Pedido)obj).getPrice())
-                    && this.getCantidadPlatos().equals(((Pedido)obj).getCantidadPlatos())
-                    && this.getFechaPedido().equals(((Pedido)obj).getFechaPedido())
-                    && this.getDireccion().equals(((Pedido)obj).getDireccion())
-                    && this.getDireccion().equals(((Pedido)obj).getDireccion())
-                    && this.getDireccion().equals(((Pedido)obj).getDireccion())
-            ){
-                return true;
-            }
-            else{
-                return false;
-            }
+            return this.getIdUsuario().equals(((Pedido) obj).getIdUsuario())
+                    && this.getEmail().equals(((Pedido) obj).getEmail())
+                    && this.getSeEnvia().equals(((Pedido) obj).getSeEnvia())
+                    && this.getDireccion().equals(((Pedido) obj).getDireccion())
+                    && this.getPrice().equals(((Pedido) obj).getPrice())
+                    && this.getCantidadPlatos().equals(((Pedido) obj).getCantidadPlatos())
+                    && this.getFechaPedido().equals(((Pedido) obj).getFechaPedido())
+                    && this.getDireccion().equals(((Pedido) obj).getDireccion())
+                    && this.getDireccion().equals(((Pedido) obj).getDireccion())
+                    && this.getDireccion().equals(((Pedido) obj).getDireccion());
         }
     }
 }
