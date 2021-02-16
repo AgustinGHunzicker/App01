@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "788826043982",
+    "project_id": "sendmeal-ee0a2",
+    "storage_bucket": "sendmeal-ee0a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:788826043982:android:47591858c94a71c563f51f",
+        "android_client_info": {
+          "package_name": "SendMeal.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "788826043982-ehabfsnq37kcjf59fpicmm0adm8tmlov.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQB52lYKOfTa23P4wPybr0bCiOL-eifZY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "788826043982-ehabfsnq37kcjf59fpicmm0adm8tmlov.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
