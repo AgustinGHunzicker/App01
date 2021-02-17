@@ -28,6 +28,6 @@ public interface  DAOPlato {
     @Query("SELECT * FROM plato")
     List<Plato> buscarTodos();
 
-    @Query("SELECT * FROM plato WHERE price > :precioMinimo")
+    @Query("SELECT * FROM plato WHERE precio > :precioMinimo")
     public Plato[] platosPreciosMayorA(double precioMinimo);
 }

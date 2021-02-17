@@ -1,6 +1,5 @@
 package app.model;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -8,24 +7,26 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 @Entity
 public class Plato implements Serializable {
-    /* ---- ATRIBUTOS -----*/
     @PrimaryKey(autoGenerate = true)
-    @NonNull
     @ColumnInfo(name = "id")
     private long id;
-    @ColumnInfo(name = "title")
-    private String title;
-    @ColumnInfo(name = "description")
-    private String description;
-    @ColumnInfo(name = "price")
-    private Double price;
-    @ColumnInfo(name = "calories")
-    private int calories;
-    @ColumnInfo(name = "url")
-    private String photoUrl;
+
+    @ColumnInfo(name = "titulo")
+    private String titulo;
+
+    @ColumnInfo(name = "descripcion")
+    private String descripcion;
+
+    @ColumnInfo(name = "precio")
+    private Double precio;
+
+    @ColumnInfo(name = "calorias")
+    private int calorias;
+
+    @ColumnInfo(name = "fotoUrl")
+    private String fotoUrl;
 
     public Plato() {
     }
@@ -34,53 +35,53 @@ public class Plato implements Serializable {
         return id;
     }
 
-    public String getPhotoUrl() {
-        return photoUrl;
+    public String getFotoUrl() {
+        return fotoUrl;
     }
 
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
+    public void setFotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public Double getPrice() {
-        return price;
+    public Double getPrecio() {
+        return precio;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setPrecio(Double precio) {
+        this.precio = precio;
     }
 
-    public Integer getCalories() {
-        return calories;
+    public Integer getCalorias() {
+        return calorias;
     }
 
-    public void setCalories(Integer calories) {
-        this.calories = calories;
+    public void setCalorias(int calorias) {
+        this.calorias = calorias;
     }
 
     @Override
     public String toString() {
-        return title;
+        return titulo;
     }
 
     @Override
@@ -89,7 +90,7 @@ public class Plato implements Serializable {
             return true;
         }
         else{
-            if(this.title.equals( ((Plato)obj).getTitle() )){
+            if(this.titulo.equals( ((Plato)obj).getTitulo() )){
                 return true;
             }
             else{

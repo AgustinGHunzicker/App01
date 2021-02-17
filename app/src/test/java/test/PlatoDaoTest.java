@@ -46,10 +46,10 @@ public class PlatoDaoTest {
     @Test
     public void insertPlatoTest() {
         Plato newPlate = new Plato();
-        newPlate.setTitle("Hamburguesa");
-        newPlate.setDescription("Un plato poco saludable pero rico");
-        newPlate.setPrice(349.0d);
-        newPlate.setCalories(500);
+        newPlate.setTitulo("Hamburguesa");
+        newPlate.setDescripcion("Un plato poco saludable pero rico");
+        newPlate.setPrecio(349.0d);
+        newPlate.setCalorias(500);
         Long id = daoPlato.insertar(newPlate);
         Plato p = daoPlato.buscar(id);
         System.out.println(p);
@@ -59,10 +59,10 @@ public class PlatoDaoTest {
     @Test
     public void borrarPlatoTest()  {
         Plato newPlate = new Plato();
-        newPlate.setTitle("Hamburguesa");
-        newPlate.setDescription("Un plato poco saludable pero rico");
-        newPlate.setPrice(349.0d);
-        newPlate.setCalories(500);
+        newPlate.setTitulo("Hamburguesa");
+        newPlate.setDescripcion("Un plato poco saludable pero rico");
+        newPlate.setPrecio(349.0d);
+        newPlate.setCalorias(500);
         Long id = daoPlato.insertar(newPlate);
         Plato p = daoPlato.buscar(id);
         assertEquals(p, newPlate);
@@ -75,39 +75,39 @@ public class PlatoDaoTest {
     @Test
     public void actualizarPlatoTest()  {
         Plato newPlate = new Plato();
-        newPlate.setTitle("Hamburguesa");
-        newPlate.setDescription("Un plato poco saludable pero rico");
-        newPlate.setPrice(349.0d);
-        newPlate.setCalories(500);
+        newPlate.setTitulo("Hamburguesa");
+        newPlate.setDescripcion("Un plato poco saludable pero rico");
+        newPlate.setPrecio(349.0d);
+        newPlate.setCalorias(500);
         Long id = daoPlato.insertar(newPlate);
         Plato p = daoPlato.buscar(id);
         assertEquals(p, newPlate);
-        p.setTitle("Hamburguesa modificada");
+        p.setTitulo("Hamburguesa modificada");
         daoPlato.actualizar(p);
-        assertEquals(p.getTitle(), "Hamburguesa modificada");
+        assertEquals(p.getTitulo(), "Hamburguesa modificada");
     }
 
     @Test
     public void buscarTodosTest(){
         Plato newPlate1 = new Plato();
-        newPlate1.setTitle("Hamburguesa1");
-        newPlate1.setDescription("Un plato poco saludable pero rico");
-        newPlate1.setPrice(350.0d);
-        newPlate1.setCalories(500);
+        newPlate1.setTitulo("Hamburguesa1");
+        newPlate1.setDescripcion("Un plato poco saludable pero rico");
+        newPlate1.setPrecio(350.0d);
+        newPlate1.setCalorias(500);
         daoPlato.insertar(newPlate1);
 
         Plato newPlate2 = new Plato();
-        newPlate2.setTitle("Hamburguesa2");
-        newPlate2.setDescription("Un plato poco saludable pero feo");
-        newPlate2.setPrice(351.0d);
-        newPlate2.setCalories(501);
+        newPlate2.setTitulo("Hamburguesa2");
+        newPlate2.setDescripcion("Un plato poco saludable pero feo");
+        newPlate2.setPrecio(351.0d);
+        newPlate2.setCalorias(501);
         daoPlato.insertar(newPlate2);
 
         Plato newPlate3 = new Plato();
-        newPlate3.setTitle("Hamburguesa3");
-        newPlate3.setDescription("Un plato poco saludable pero mehj");
-        newPlate3.setPrice(352.0d);
-        newPlate3.setCalories(502);
+        newPlate3.setTitulo("Hamburguesa3");
+        newPlate3.setDescripcion("Un plato poco saludable pero mehj");
+        newPlate3.setPrecio(352.0d);
+        newPlate3.setCalorias(502);
         daoPlato.insertar(newPlate3);
 
         List<Plato> lista = daoPlato.buscarTodos();
@@ -120,31 +120,31 @@ public class PlatoDaoTest {
     @Test
     public void platosPreciosMayorATest() {
         Plato newPlate1 = new Plato();
-        newPlate1.setTitle("Hamburguesa1");
-        newPlate1.setDescription("Un plato poco saludable pero rico");
-        newPlate1.setPrice(200d);
-        newPlate1.setCalories(500);
+        newPlate1.setTitulo("Hamburguesa1");
+        newPlate1.setDescripcion("Un plato poco saludable pero rico");
+        newPlate1.setPrecio(200d);
+        newPlate1.setCalorias(500);
         daoPlato.insertar(newPlate1);
 
         Plato newPlate2 = new Plato();
-        newPlate2.setTitle("Hamburguesa2");
-        newPlate2.setDescription("Un plato poco saludable pero feo");
-        newPlate2.setPrice(300d);
-        newPlate2.setCalories(501);
+        newPlate2.setTitulo("Hamburguesa2");
+        newPlate2.setDescripcion("Un plato poco saludable pero feo");
+        newPlate2.setPrecio(300d);
+        newPlate2.setCalorias(501);
         daoPlato.insertar(newPlate2);
 
         Plato newPlate3 = new Plato();
-        newPlate3.setTitle("Hamburguesa3");
-        newPlate3.setDescription("Un plato poco saludable pero mehj");
-        newPlate3.setPrice(400d);
-        newPlate3.setCalories(502);
+        newPlate3.setTitulo("Hamburguesa3");
+        newPlate3.setDescripcion("Un plato poco saludable pero mehj");
+        newPlate3.setPrecio(400d);
+        newPlate3.setCalorias(502);
         daoPlato.insertar(newPlate3);
 
         Plato newPlato4 = new Plato();
-        newPlato4.setTitle("Hamburguesa4");
-        newPlato4.setDescription("Un plato");
-        newPlato4.setPrice(500d);
-        newPlato4.setCalories(502);
+        newPlato4.setTitulo("Hamburguesa4");
+        newPlato4.setDescripcion("Un plato");
+        newPlato4.setPrecio(500d);
+        newPlato4.setCalorias(502);
         daoPlato.insertar(newPlato4);
 
         List<Plato> lista = daoPlato.buscarTodos();

@@ -1,11 +1,8 @@
 package app.model;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
@@ -14,30 +11,33 @@ import java.time.LocalDate;
 
 import app.database.Converters;
 
-import static androidx.room.ForeignKey.CASCADE;
-
-@Entity(foreignKeys = {@ForeignKey(entity = Usuario.class, parentColumns = "id", childColumns = "idUsuario", onDelete = CASCADE)}, indices = {@Index(value = {"idUsuario"})})
+@Entity
 public class Pedido implements Serializable {
-    /* ---- RELACIONES -----*/
+
     @ColumnInfo(name="idUsuario")
     private long idUsuario;
 
-    /* ---- ATRIBUTOS -----*/
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="id")
     private long id;
+
     @ColumnInfo(name="email")
     private String email;
+
     @ColumnInfo(name="seEnvia")
-    private Boolean seEnvia;
+    private boolean seEnvia;
+
     @ColumnInfo(name="direccion")
     private String direccion;
-    @ColumnInfo(name="price")
-    private double price;
+
+    @ColumnInfo(name="precio")
+    private double precio;
+
     @ColumnInfo(name="cantidadPlatos")
     private int cantidadPlatos;
+
     @TypeConverters(Converters.class)
-    @ColumnInfo(name="fechaoPedido")
+    @ColumnInfo(name="fechaPedido")
     private LocalDate fechaPedido;
 
     public Pedido() { }
@@ -70,7 +70,7 @@ public class Pedido implements Serializable {
         return seEnvia;
     }
 
-    public void setSeEnvia(Boolean seEnvia) {
+    public void setSeEnvia(boolean seEnvia) {
         this.seEnvia = seEnvia;
     }
 
@@ -82,12 +82,12 @@ public class Pedido implements Serializable {
         this.direccion = direccion;
     }
 
-    public Double getPrice() {
-        return price;
+    public Double getPrecio() {
+        return precio;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 
     public Integer getCantidadPlatos() {
@@ -106,7 +106,7 @@ public class Pedido implements Serializable {
         this.fechaPedido = fechaPedido;
     }
 
-    @NonNull
+
     @Override
     public String toString() {
         return "Pedido{" +
@@ -115,7 +115,7 @@ public class Pedido implements Serializable {
                 ", email='" + email + '\'' +
                 ", seEnvia=" + seEnvia +
                 ", direccion='" + direccion + '\'' +
-                ", price=" + price +
+                ", precio=" + precio +
                 ", cantidadPlatos=" + cantidadPlatos +
                 ", fechaPedido=" + fechaPedido +
                 '}';
@@ -131,7 +131,7 @@ public class Pedido implements Serializable {
                     && this.getEmail().equals(((Pedido) obj).getEmail())
                     && this.getSeEnvia().equals(((Pedido) obj).getSeEnvia())
                     && this.getDireccion().equals(((Pedido) obj).getDireccion())
-                    && this.getPrice().equals(((Pedido) obj).getPrice())
+                    && this.getPrecio().equals(((Pedido) obj).getPrecio())
                     && this.getCantidadPlatos().equals(((Pedido) obj).getCantidadPlatos())
                     && this.getFechaPedido().equals(((Pedido) obj).getFechaPedido())
                     && this.getDireccion().equals(((Pedido) obj).getDireccion())

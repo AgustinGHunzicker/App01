@@ -1,6 +1,5 @@
 package app.model;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -14,7 +13,6 @@ public class PedidoConPlatos implements Serializable{
     private long idPedido;
 
     @PrimaryKey(autoGenerate = true)
-    @NonNull
     @ColumnInfo(name="id")
     private long id;
 
@@ -36,12 +34,11 @@ public class PedidoConPlatos implements Serializable{
         this.idPedido = idPedido;
     }
 
-    @NonNull
     public Long getId() {
         return id;
     }
 
-    public void setId(@NonNull long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

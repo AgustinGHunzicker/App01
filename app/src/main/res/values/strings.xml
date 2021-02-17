@@ -59,6 +59,7 @@
     <string name="btnPedir">Pedir</string>
     <string name="ToastInvalidSpacesPlate">Campos no válidos/incompletos</string>
     <string name="ToastSuccessfulTransactionPlate">El plato ha sido creado con éxito</string>
+    <string name="ToastErrorTransactionPlate">No se ha podido crear el plato</string>
 
 
     <!-- Pantalla de visualizar los platos -->

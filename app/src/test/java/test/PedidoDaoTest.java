@@ -72,7 +72,7 @@ public class PedidoDaoTest {
         Pedido p = new Pedido();
         p.setCantidadPlatos(5);
         p.setDireccion("Dirección prueba");
-        p.setPrice(1000d);
+        p.setPrecio(1000d);
         p.setEmail("usuarioprueba@mail.com");
         p.setFechaPedido(LocalDate.now());
         p.setSeEnvia(true);
@@ -101,7 +101,7 @@ public class PedidoDaoTest {
         Pedido p = new Pedido();
         p.setCantidadPlatos(5);
         p.setDireccion("Dirección prueba");
-        p.setPrice(1000d);
+        p.setPrecio(1000d);
         p.setEmail("usuarioprueba@mail.com");
         p.setFechaPedido(LocalDate.now());
         p.setSeEnvia(true);
@@ -135,7 +135,7 @@ public class PedidoDaoTest {
         Pedido p = new Pedido();
         p.setCantidadPlatos(5);
         p.setDireccion("Dirección prueba");
-        p.setPrice(1000d);
+        p.setPrecio(1000d);
         p.setEmail("usuarioprueba@mail.com");
         p.setFechaPedido(LocalDate.now());
         p.setSeEnvia(true);
@@ -147,7 +147,7 @@ public class PedidoDaoTest {
 
         p2.setCantidadPlatos(10);
         p2.setDireccion("Dirección prueba UPDATE");
-        p2.setPrice(2000d);
+        p2.setPrecio(2000d);
         p2.setEmail("usuariopruebaUPDATE@mail.com");
         p2.setFechaPedido(LocalDate.now().plusDays(1));
         p2.setSeEnvia(false);
@@ -157,7 +157,7 @@ public class PedidoDaoTest {
         daoPedido.actualizar(p2);
         assertEquals(p2.getCantidadPlatos().toString(), "10");
         assertEquals(p2.getDireccion(), "Dirección prueba UPDATE");
-        assertEquals(p2.getPrice(), 2000d);
+        assertEquals(p2.getPrecio(), 2000d);
         assertEquals(p2.getEmail(), "usuariopruebaUPDATE@mail.com");
         assertEquals(p2.getFechaPedido(), LocalDate.now().plusDays(1));
         assertEquals(p2.getSeEnvia().toString(), "false");
@@ -183,7 +183,7 @@ public class PedidoDaoTest {
         Pedido p = new Pedido();
         p.setCantidadPlatos(5);
         p.setDireccion("Dirección prueba1");
-        p.setPrice(1000d);
+        p.setPrecio(1000d);
         p.setEmail("usuarioprueba1@mail.com");
         p.setFechaPedido(LocalDate.now());
         p.setSeEnvia(true);
@@ -193,7 +193,7 @@ public class PedidoDaoTest {
         Pedido p2 = new Pedido();
         p2.setCantidadPlatos(5);
         p2.setDireccion("Dirección prueba2");
-        p2.setPrice(1000d);
+        p2.setPrecio(1000d);
         p2.setEmail("usuarioprueba2@mail.com");
         p2.setFechaPedido(LocalDate.now());
         p2.setSeEnvia(true);
@@ -203,7 +203,7 @@ public class PedidoDaoTest {
         Pedido p3 = new Pedido();
         p3.setCantidadPlatos(5);
         p3.setDireccion("Dirección prueba3");
-        p3.setPrice(1000d);
+        p3.setPrecio(1000d);
         p3.setEmail("usuarioprueba3@mail.com");
         p3.setFechaPedido(LocalDate.now());
         p3.setSeEnvia(true);
@@ -213,7 +213,7 @@ public class PedidoDaoTest {
         Pedido p4 = new Pedido();
         p4.setCantidadPlatos(5);
         p4.setDireccion("Dirección prueb4a");
-        p4.setPrice(1000d);
+        p4.setPrecio(1000d);
         p4.setEmail("usuarioprueba4@mail.com");
         p4.setFechaPedido(LocalDate.now());
         p4.setSeEnvia(true);
@@ -245,7 +245,7 @@ public class PedidoDaoTest {
         Pedido p = new Pedido();
         p.setCantidadPlatos(5);
         p.setDireccion("Dirección prueba1");
-        p.setPrice(1000d);
+        p.setPrecio(1000d);
         p.setEmail("usuarioprueba1@mail.com");
         p.setFechaPedido(LocalDate.now());
         p.setSeEnvia(true);
@@ -254,31 +254,31 @@ public class PedidoDaoTest {
 
 
         Plato newPlate1 = new Plato();
-        newPlate1.setTitle("Hamburguesa1");
-        newPlate1.setDescription("Un plato poco saludable pero rico");
-        newPlate1.setPrice(200d);
-        newPlate1.setCalories(500);
+        newPlate1.setTitulo("Hamburguesa1");
+        newPlate1.setDescripcion("Un plato poco saludable pero rico");
+        newPlate1.setPrecio(200d);
+        newPlate1.setCalorias(500);
         Long idPlato1 = daoPlato.insertar(newPlate1);
 
         Plato newPlate2 = new Plato();
-        newPlate2.setTitle("Hamburguesa2");
-        newPlate2.setDescription("Un plato poco saludable pero feo");
-        newPlate2.setPrice(300d);
-        newPlate2.setCalories(501);
+        newPlate2.setTitulo("Hamburguesa2");
+        newPlate2.setDescripcion("Un plato poco saludable pero feo");
+        newPlate2.setPrecio(300d);
+        newPlate2.setCalorias(501);
         Long idPlato2 = daoPlato.insertar(newPlate2);
 
         Plato newPlate3 = new Plato();
-        newPlate3.setTitle("Hamburguesa3");
-        newPlate3.setDescription("Un plato poco saludable pero mehj");
-        newPlate3.setPrice(400d);
-        newPlate3.setCalories(502);
+        newPlate3.setTitulo("Hamburguesa3");
+        newPlate3.setDescripcion("Un plato poco saludable pero mehj");
+        newPlate3.setPrecio(400d);
+        newPlate3.setCalorias(502);
         Long idPlato3 = daoPlato.insertar(newPlate3);
 
         Plato newPlato4 = new Plato();
-        newPlato4.setTitle("Hamburguesa4");
-        newPlato4.setDescription("Un plato");
-        newPlato4.setPrice(500d);
-        newPlato4.setCalories(502);
+        newPlato4.setTitulo("Hamburguesa4");
+        newPlato4.setDescripcion("Un plato");
+        newPlato4.setPrecio(500d);
+        newPlato4.setCalorias(502);
         Long idPlato4 = daoPlato.insertar(newPlato4);
 
 

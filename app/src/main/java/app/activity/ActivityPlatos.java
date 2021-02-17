@@ -10,11 +10,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import app.adapters.PlatoRecycler;
+import app.adapters.PlatoHolder;
 import app.database.AppRepository;
 import SendMeal.app.R;
 import app.database.OnResultCallback;
@@ -35,14 +36,14 @@ public class ActivityPlatos extends AppCompatActivity implements OnResultCallbac
         }
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_plate_recycler);
+        setContentView(R.layout.activity_platos_recycler);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new PlatoRecycler(this, new ArrayList<Plato>(), false));
+        recyclerView.setAdapter(new PlatoHolder(this, new ArrayList<Plato>(), false));
 
-        repository = AppRepository.getInstance(this,this);
+        repository = new AppRepository(this,this);
         repository.buscarPlatos();
 
         Toolbar toolbar = findViewById(R.id.toolbarPlateRecycler);
@@ -67,7 +68,13 @@ public class ActivityPlatos extends AppCompatActivity implements OnResultCallbac
 
     @Override
     public void onResult(List result) {
-        recyclerView.setAdapter(new PlatoRecycler(this, (List<Plato>) result, addButtonAsk));
+        recyclerView.setAdapter(new PlatoHolder(this, (List<Plato>) result, addButtonAsk));
         //TODO seguir aca
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AppRepository.close();
     }
 }

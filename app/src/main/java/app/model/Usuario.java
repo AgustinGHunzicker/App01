@@ -1,28 +1,27 @@
 package app.model;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 @Entity
 public class Usuario implements Serializable {
 
-    /* ---- ATRIBUTOS -----*/
     @PrimaryKey(autoGenerate = true)
-    @NonNull
     @ColumnInfo(name="id")
     private long id;
+
     @ColumnInfo(name="nombre")
     private String nombre;
+
     @ColumnInfo(name="clave")
     private String clave;
+
     @ColumnInfo(name="email")
     private String email;
+
     @ColumnInfo(name="credito")
     private double credito;
 
@@ -64,26 +63,7 @@ public class Usuario implements Serializable {
         return credito;
     }
 
-    public void setCredito(Double credito) {
+    public void setCredito(double credito) {
         this.credito = credito;
-    }
-
-    @Override
-    public boolean equals(@Nullable Object obj) {
-        if(this.getId().equals( ((Usuario)obj).getId() )){
-            return true;
-        }
-        else{
-            if(this.nombre.equals( ((Usuario)obj).getNombre() )
-                    && this.clave.equals( ((Usuario)obj).getClave() )
-                    && this.email.equals( ((Usuario)obj).getEmail() )
-                    && this.getCredito().equals( ((Usuario)obj).getCredito()
-            )){
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
     }
 }

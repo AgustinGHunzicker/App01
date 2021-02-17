@@ -58,12 +58,12 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrar);
+        setContentView(R.layout.activity_registrar_usuario);
 
         editName = findViewById(R.id.textUserName);
         editUserPassword = findViewById(R.id.textUserPassword);
         editUserPasswordRepeat = findViewById(R.id.textUserPasswordRepeat);
-        editEmail = findViewById(R.id.textEmailAddress);
+        editEmail = findViewById(R.id.textEmail);
         editCardNumber = findViewById(R.id.textCardNumber);
         editCardCCV = findViewById(R.id.textCardCCV);
         editCBU = findViewById(R.id.textCBU);
@@ -175,9 +175,9 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
                 if(selectedMonth.equals("")||selectedYear.equals("")) invalid_space = true;
                 else{
                     LocalDateTime localDateTime = LocalDateTime.now();
-                    Integer m = Integer.parseInt(selectedMonth);
+                    int m = Integer.parseInt(selectedMonth);
                     Integer y = Integer.parseInt(selectedYear);
-                    Integer mToday = localDateTime.getMonthValue();
+                    int mToday = localDateTime.getMonthValue();
                     Integer yToday = localDateTime.getYear();
                     if(y.equals(yToday) && mToday > m-3) invalid_space = true;
                 }

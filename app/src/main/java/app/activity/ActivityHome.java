@@ -59,22 +59,16 @@ public class ActivityHome extends AppCompatActivity {
         Resources res = getResources();
         switch (item.getItemId()){
             case R.id.menuOption1:
-                Intent registerScreen = new Intent(this, ActivityRegistrarUsuario.class);
-                startActivity(registerScreen);
-                String registrar = res.getString(R.string.activityRegister);
-                Log.d("Tag1", registrar);
+                startActivity(new Intent(this, ActivityRegistrarUsuario.class));
+                Log.d("menuOption1", res.getString(R.string.activityRegister));
                 break;
             case R.id.menuOption2:
-                Intent newPlateScreen = new Intent(this, ActivityNuevoPlato.class);
-                startActivity(newPlateScreen);
-                String createItem = res.getString(R.string.activityCreateItem);
-                Log.d("Tag2", createItem);
+                startActivity(new Intent(this, ActivityNuevoPlato.class));
+                Log.d("menuOption2", res.getString(R.string.activityCreateItem));
                 break;
             case R.id.menuOption3:
-                Intent platesView = new Intent(this, ActivityPlatos.class);
-                startActivity(platesView);
-                String itemsList = res.getString(R.string.activityItemsList);
-                Log.d("Tag3",itemsList);
+                startActivity(new Intent(this, ActivityPlatos.class));
+                Log.d("menuOption3",res.getString(R.string.activityItemsList));
                 break;
         }
         return super.onOptionsItemSelected(item);

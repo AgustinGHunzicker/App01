@@ -40,8 +40,8 @@ public class PlatoAdapter extends ArrayAdapter<Plato> {
         }
 
         platoHolder.cantidadPlato.setText("x1");
-        platoHolder.nombrePlato.setText(plato.getTitle());
-        platoHolder.precioPlato.setText("$ "+String.format("%.2f", plato.getPrice()));
+        platoHolder.nombrePlato.setText(plato.getTitulo());
+        platoHolder.precioPlato.setText("$ "+String.format("%.2f", plato.getPrecio()));
 
         return vistaPlato;
     }
