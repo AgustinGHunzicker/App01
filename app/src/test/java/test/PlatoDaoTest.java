@@ -68,7 +68,7 @@ public class PlatoDaoTest {
         assertEquals(p, newPlate);
         daoPlato.borrar(p);
 
-        Plato platoBuscado = daoPlato.buscar(p.getId());
+        Plato platoBuscado = daoPlato.buscar(p.getIdPlato());
         assertNull(platoBuscado);
     }
 

@@ -1,25 +1,26 @@
 package app.model;
 
-import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import app.database.Converters;
 
 @Entity
 public class Pedido implements Serializable {
 
-    @ColumnInfo(name="idUsuario")
-    private long idUsuario;
+    @Ignore
+    private ArrayList<Long> platosPedidos;
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name="id")
-    private long id;
+    @ColumnInfo(name="idPedido")
+    private long idPedido;
 
     @ColumnInfo(name="email")
     private String email;
@@ -42,20 +43,21 @@ public class Pedido implements Serializable {
 
     public Pedido() { }
 
-    public Long getIdUsuario() {
-        return idUsuario;
+    public ArrayList<Long> getPlatosPedidos() {
+        if(platosPedidos == null) platosPedidos = new ArrayList<>();
+        return platosPedidos;
     }
 
-    public void setIdUsuario(long idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setPlatosPedidos(ArrayList<Long> platosPedidos) {
+        this.platosPedidos = platosPedidos;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdPedido() {
+        return idPedido;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setIdPedido(long idPedido) {
+        this.idPedido = idPedido;
     }
 
     public String getEmail() {
@@ -106,37 +108,4 @@ public class Pedido implements Serializable {
         this.fechaPedido = fechaPedido;
     }
 
-
-    @Override
-    public String toString() {
-        return "Pedido{" +
-                "idUsuario=" + idUsuario +
-                ", id=" + id +
-                ", email='" + email + '\'' +
-                ", seEnvia=" + seEnvia +
-                ", direccion='" + direccion + '\'' +
-                ", precio=" + precio +
-                ", cantidadPlatos=" + cantidadPlatos +
-                ", fechaPedido=" + fechaPedido +
-                '}';
-    }
-
-    @Override
-    public boolean equals(@Nullable Object obj) {
-        if(this.getId().equals( ((Pedido)obj).getId() )){
-            return true;
-        }
-        else{
-            return this.getIdUsuario().equals(((Pedido) obj).getIdUsuario())
-                    && this.getEmail().equals(((Pedido) obj).getEmail())
-                    && this.getSeEnvia().equals(((Pedido) obj).getSeEnvia())
-                    && this.getDireccion().equals(((Pedido) obj).getDireccion())
-                    && this.getPrecio().equals(((Pedido) obj).getPrecio())
-                    && this.getCantidadPlatos().equals(((Pedido) obj).getCantidadPlatos())
-                    && this.getFechaPedido().equals(((Pedido) obj).getFechaPedido())
-                    && this.getDireccion().equals(((Pedido) obj).getDireccion())
-                    && this.getDireccion().equals(((Pedido) obj).getDireccion())
-                    && this.getDireccion().equals(((Pedido) obj).getDireccion());
-        }
-    }
 }

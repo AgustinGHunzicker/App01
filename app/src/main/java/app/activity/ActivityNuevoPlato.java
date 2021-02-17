@@ -100,20 +100,16 @@ public class ActivityNuevoPlato extends AppCompatActivity implements OnResultCal
 
     private void uploadImage(){
         setIdPicture();
-        final StorageReference ref = FirebaseStorage.getInstance().getReference().child("images/"+ID_PICTURE);
-        UploadTask uploadTask = ref.putBytes(imagenSubida);//TODO cuando uso la galeria es null
+        if(imagenSubida != null){
+            final StorageReference ref = FirebaseStorage.getInstance().getReference().child("images/"+ID_PICTURE);
+            UploadTask uploadTask = ref.putBytes(imagenSubida);
 
-        uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-            @Override
-            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+            uploadTask.continueWithTask(task -> {
                 if (!task.isSuccessful()) {
                     throw Objects.requireNonNull(task.getException());
                 }
                 return ref.getDownloadUrl();
-            }
-        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-            @Override
-            public void onComplete(@NonNull Task<Uri> task) {
+            }).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     Uri downloadUri = task.getResult();
                     nuevoPlato.setFotoUrl(downloadUri.toString());
@@ -123,8 +119,13 @@ public class ActivityNuevoPlato extends AppCompatActivity implements OnResultCal
                 } else {
                     Toast.makeText(getApplicationContext(), R.string.ToastErrorTransactionPlate, Toast.LENGTH_LONG).show();
                 }
-            }
-        });
+            });
+        }
+        else{
+            repository.insertarPlato(nuevoPlato);
+            Toast.makeText(getApplicationContext(), R.string.ToastSuccessfulTransactionPlate, Toast.LENGTH_LONG).show();
+            finish();
+        }
     }
 
     @Override
@@ -145,61 +146,47 @@ public class ActivityNuevoPlato extends AppCompatActivity implements OnResultCal
         textCalorias =  findViewById(R.id.textCaloriasPlato);
         imagenPlato = findViewById(R.id.imagenPlato);
 
-        btnCamara.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
-                    requestPermissions(new String[]{Manifest.permission.CAMERA}, PERMISSION_CODE_MY_CAMERA);
-                else openCamera();
-            }
+        btnCamara.setOnClickListener(v -> {
+            if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, PERMISSION_CODE_MY_CAMERA);
+            else openCamera();
         });
 
-        btnGalleria.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-                    requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PICK_FROM_GALLERY_PERMISSION_CODE);
-                else openGallery();
-            }
+        btnGalleria.setOnClickListener(v -> {
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PICK_FROM_GALLERY_PERMISSION_CODE);
+            else openGallery();
         });
 
         //btnDeleteImage.setVisibility(View.INVISIBLE);
-        btnBorrarImagen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                deleteImage();
+        btnBorrarImagen.setOnClickListener(v -> deleteImage());
+
+        btnGuardar.setOnClickListener(view -> {
+
+            Boolean invalid_space = false;
+            String titlePlate = textTitulo.getText().toString();
+            String descriptionPlate = textDescripcion.getText().toString();
+            String pricePlate = textPrecio.getText().toString();
+            String caloriesPlate = textCalorias.getText().toString();
+
+            if(titlePlate.equals("")) invalid_space = true;
+            if(descriptionPlate.equals("")) invalid_space = true;
+            if(pricePlate.equals("")) invalid_space = true;
+            else  if(Double.parseDouble(pricePlate) <= 0) invalid_space = true;
+            if(caloriesPlate.equals("")) invalid_space = true;
+            else if(Integer.parseInt(caloriesPlate) <= 0) invalid_space = true;
+
+            // Mensaje de datos invalidos
+            if(invalid_space){
+                Toast.makeText(getApplicationContext(),R.string.ToastInvalidSpacesPlate,Toast.LENGTH_LONG).show();
             }
-        });
-
-        btnGuardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Boolean invalid_space = false;
-                String titlePlate = textTitulo.getText().toString();
-                String descriptionPlate = textDescripcion.getText().toString();
-                String pricePlate = textPrecio.getText().toString();
-                String caloriesPlate = textCalorias.getText().toString();
-
-                if(titlePlate.equals("")) invalid_space = true;
-                if(descriptionPlate.equals("")) invalid_space = true;
-                if(pricePlate.equals("")) invalid_space = true;
-                else  if(Double.parseDouble(pricePlate) <= 0) invalid_space = true;
-                if(caloriesPlate.equals("")) invalid_space = true;
-                else if(Integer.parseInt(caloriesPlate) <= 0) invalid_space = true;
-
-                // Mensaje de datos invalidos
-                if(invalid_space){
-                    Toast.makeText(getApplicationContext(),R.string.ToastInvalidSpacesPlate,Toast.LENGTH_LONG).show();
-                }
-                else{
-                    nuevoPlato = new Plato();
-                    nuevoPlato.setTitulo(titlePlate);
-                    nuevoPlato.setDescripcion(descriptionPlate);
-                    nuevoPlato.setPrecio(Double.parseDouble(pricePlate));
-                    nuevoPlato.setCalorias(Integer.parseInt(caloriesPlate));
-                    uploadImage();
-                }
+            else{
+                nuevoPlato = new Plato();
+                nuevoPlato.setTitulo(titlePlate);
+                nuevoPlato.setDescripcion(descriptionPlate);
+                nuevoPlato.setPrecio(Double.parseDouble(pricePlate));
+                nuevoPlato.setCalorias(Integer.parseInt(caloriesPlate));
+                uploadImage();
             }
         });
     }

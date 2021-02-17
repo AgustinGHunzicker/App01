@@ -10,8 +10,8 @@ import java.io.Serializable;
 @Entity
 public class Plato implements Serializable {
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    private long id;
+    @ColumnInfo(name = "idPlato")
+    private long idPlato;
 
     @ColumnInfo(name = "titulo")
     private String titulo;
@@ -31,8 +31,8 @@ public class Plato implements Serializable {
     public Plato() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdPlato() {
+        return idPlato;
     }
 
     public String getFotoUrl() {
@@ -43,8 +43,8 @@ public class Plato implements Serializable {
         this.fotoUrl = fotoUrl;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setIdPlato(long idPlato) {
+        this.idPlato = idPlato;
     }
 
     public String getTitulo() {
@@ -86,7 +86,7 @@ public class Plato implements Serializable {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-        if(this.getId().equals( ((Plato)obj).getId() )){
+        if(this.getIdPlato().equals( ((Plato)obj).getIdPlato() )){
             return true;
         }
         else{

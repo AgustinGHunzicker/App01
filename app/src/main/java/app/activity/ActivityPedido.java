@@ -8,7 +8,6 @@ import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -93,61 +92,54 @@ public class ActivityPedido extends AppCompatActivity implements OnResultCallbac
 
 
     private void addListenerBtn(){
-        btnAddPlato.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), ActivityPlatos.class);
-                i.putExtra("addButtonAsk", true);
-                startActivityForResult(i, REQUEST_CODE);
-            }
+        btnAddPlato.setOnClickListener(view -> {
+            Intent i = new Intent(getApplicationContext(), ActivityPlatos.class);
+            i.putExtra("addButtonAsk", true);
+            startActivityForResult(i, REQUEST_CODE);
         });
 
-        btnAddUbicacion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-              Intent i = new Intent(getApplicationContext(), ActivityMap.class);
-              startActivity(i);
-            }
+        btnAddUbicacion.setOnClickListener(view -> {
+            //TODO arreglar
+            // TODO hay que pedir el permiso
+            Intent i = new Intent(getApplicationContext(), ActivityMap.class);
+            startActivity(i);
         });
 
-        btnConfirmarPedido.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email = textEmail.getText().toString();
-                String address = textDireccion.getText().toString();
-                boolean invalid_space = false;
+        btnConfirmarPedido.setOnClickListener(view -> {
+            String email = textEmail.getText().toString();
+            String address = textDireccion.getText().toString();
+            boolean invalid_space = false;
 
-                if(!email.contains("@")) invalid_space = true;
-                else if(email.substring(email.lastIndexOf("@")).length() < 3) invalid_space = true;
-                else if(address.length() < 1) invalid_space = true;
-                else if(!rbEnvio.isChecked() && !rbParaLLevar.isChecked()) invalid_space = true;
+            if(!email.contains("@")) invalid_space = true;
+            else if(email.substring(email.lastIndexOf("@")).length() < 3) invalid_space = true;
+            else if(address.length() < 1) invalid_space = true;
+            else if(!rbEnvio.isChecked() && !rbParaLLevar.isChecked()) invalid_space = true;
 
-                if(invalid_space){
-                    Log.d("ASK", "Failed order");
-                    Toast.makeText(getApplicationContext(), R.string.failedOrder, Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Pedido pedido = new Pedido();
-                    pedido.setCantidadPlatos(Integer.parseInt(textCantidadProductos.getText().toString()));
-                    pedido.setDireccion(textDireccion.getText().toString());
-                    pedido.setEmail(textEmail.getText().toString());
-                    pedido.setPrecio(Double.parseDouble(textPrecioTotal.getText().toString().substring(2)));
-                    pedido.setSeEnvia(rbEnvio.isChecked());
-                    pedido.setFechaPedido(LocalDate.now());
+            if(invalid_space){
+                Log.d("ASK", "Failed order");
+                Toast.makeText(getApplicationContext(), R.string.failedOrder, Toast.LENGTH_LONG).show();
+            }
+            else{
+                Pedido pedido = new Pedido();
+                pedido.setCantidadPlatos(Integer.parseInt(textCantidadProductos.getText().toString()));
+                pedido.setDireccion(textDireccion.getText().toString());
+                pedido.setEmail(textEmail.getText().toString());
+                pedido.setPrecio(Double.parseDouble(textPrecioTotal.getText().toString().substring(2)));
+                pedido.setSeEnvia(rbEnvio.isChecked());
+                pedido.setFechaPedido(LocalDate.now());
 
-                    //TODO ver si funciona esto
-                    repository.insertarPedido(pedido, platosEnPedido);
+                //TODO ver si funciona esto
+                repository.insertarPedido(pedido, platosEnPedido);
 
 
-                    Log.d("ASK", "Successful order");
-                    Toast.makeText(getApplicationContext(), R.string.successfulOrder, Toast.LENGTH_LONG).show();
-                    new taskGuardarPlato().execute("Succesfull");
+                Log.d("ASK", "Successful order");
+                Toast.makeText(getApplicationContext(), R.string.successfulOrder, Toast.LENGTH_LONG).show();
+                new taskGuardarPlato().execute("Succesfull");
 
-                    Log.d("probando PEDIDO", pedido.toString());
+                Log.d("probando PEDIDO", pedido.toString());
 
-                    startActivity(new Intent(_CONTEXT, ActivityHome.class));
-                    finishAffinity();
-                }
+                startActivity(new Intent(_CONTEXT, ActivityHome.class));
+                finishAffinity();
             }
         });
     }

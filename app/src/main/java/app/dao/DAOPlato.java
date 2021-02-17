@@ -22,8 +22,8 @@ public interface  DAOPlato {
     @Update
     void actualizar(Plato plato);
 
-    @Query("SELECT * FROM plato WHERE id = :id LIMIT 1")
-    Plato buscar(long id);
+    @Query("SELECT * FROM plato WHERE idPlato = :idPlato LIMIT 1")
+    Plato buscar(long idPlato);
 
     @Query("SELECT * FROM plato")
     List<Plato> buscarTodos();

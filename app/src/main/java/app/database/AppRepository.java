@@ -10,23 +10,22 @@ import java.util.List;
 import app.dao.DAOPedido;
 import app.dao.DAOPedidoConPlatos;
 import app.dao.DAOPlato;
-import app.dao.DAOUsuario;
 import app.model.Pedido;
 import app.model.PedidoConPlatos;
 import app.model.Plato;
-import app.model.Usuario;
 
 public class AppRepository implements OnResultCallback {
+
 
     private static AppRepository _INSTANCE = null;
     private static AppDatabase db = null;
     private static AppCompatActivity _CONTEXT;
+    private static AppRetrofit _RETROFIT;
     private final OnResultCallback callback;
 
     protected final DAOPlato daoPlato;
     protected final DAOPedido daoPedido;
     protected final DAOPedidoConPlatos daoPedidoConPlatos;
-    protected final DAOUsuario daoUsuario;
 
     public AppRepository(final AppCompatActivity context, OnResultCallback callback2){
         _CONTEXT = context;
@@ -34,50 +33,32 @@ public class AppRepository implements OnResultCallback {
         daoPlato = db.daoPlato();
         daoPedido = db.daoPedido();
         daoPedidoConPlatos = db.daoPedidoConPlatos();
-        daoUsuario = db.daoUsuario();
         callback = callback2;
+        _RETROFIT = AppRetrofit.getRetrofit();
     }
-
-    /*public static AppRepository getInstance(final AppCompatActivity context, OnResultCallback<?> callback) {
-        if (_INSTANCE == null) _INSTANCE = new AppRepository(context, callback);
-        return _INSTANCE;
-    }*/
 
     public static void close(){
         _INSTANCE = null;
-        //db.close();
     }
 
     public void insertarPlato(final Plato plato){
-        AppDatabase.databaseWriteExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                daoPlato.insertar(plato);
-            }
-        });
-    }
-
-    public void insertarUsuario(final Usuario usuario){
-        AppDatabase.databaseWriteExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                daoUsuario.insertar(usuario);
-            }
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            plato.setIdPlato(daoPlato.insertar(plato));
+            _RETROFIT.insertPlato(plato);;
         });
     }
 
     public void insertarPedido(final Pedido pedido, final List<Plato> listaPlatos){
-        AppDatabase.databaseWriteExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                daoPedido.insertar(pedido);
-                for(Plato plato:listaPlatos){
-                    PedidoConPlatos pedidoConPlatos = new PedidoConPlatos();
-                    pedidoConPlatos.setIdPlato(plato.getId());
-                    pedidoConPlatos.setIdPedido(pedido.getId());
-                    daoPedidoConPlatos.insertar(pedidoConPlatos);
-                }
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            pedido.setIdPedido(daoPedido.insertar(pedido));
+            for(Plato plato:listaPlatos){
+                PedidoConPlatos pedidoConPlatos = new PedidoConPlatos();
+                pedidoConPlatos.setIdPlato(plato.getIdPlato());
+                pedidoConPlatos.setIdPedido(pedido.getIdPedido());
+                daoPedidoConPlatos.insertar(pedidoConPlatos);
+                pedido.getPlatosPedidos().add(pedido.getIdPedido());
             }
+            _RETROFIT.insertPedido(pedido);
         });
     }
 

@@ -19,7 +19,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 import SendMeal.app.R;
 
-
 public class ActivityHome extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -30,21 +29,16 @@ public class ActivityHome extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         mAuth = FirebaseAuth.getInstance();
-        mAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    FirebaseUser user = mAuth.getCurrentUser();
-                } else {
-                    Toast.makeText(ActivityHome.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-                }
+        mAuth.signInAnonymously().addOnCompleteListener(this, task -> {
+            if (task.isSuccessful()) {
+                FirebaseUser user = mAuth.getCurrentUser();
+            } else {
+                Toast.makeText(ActivityHome.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
             }
         });
 
         Toolbar toolbar = findViewById(R.id.toolbarActivityHome);
         setSupportActionBar(toolbar);
-
-        //new DatosPrueba(getApplicationContext());
     }
 
     @Override

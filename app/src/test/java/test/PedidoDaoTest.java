@@ -18,12 +18,10 @@ import java.util.List;
 import app.dao.DAOPedido;
 import app.dao.DAOPedidoConPlatos;
 import app.dao.DAOPlato;
-import app.dao.DAOUsuario;
 import app.database.AppDatabase;
 import app.model.Pedido;
 import app.model.PedidoConPlatos;
 import app.model.Plato;
-import app.model.Usuario;
 
 import androidx.test.core.app.ApplicationProvider;
 
@@ -113,7 +111,7 @@ public class PedidoDaoTest {
 
 
         daoPedido.borrar(p2);
-        Pedido pedidoBuscado = daoPedido.buscar(p2.getId());
+        Pedido pedidoBuscado = daoPedido.buscar(p2.getIdPedido());
         assertNull(pedidoBuscado);
 
         System.out.println(p2);

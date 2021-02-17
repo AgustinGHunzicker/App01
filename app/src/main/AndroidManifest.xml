@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="SendMeal.app">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="SendMeal.app">
 
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the "MyLocation" functionality.
-    -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -23,24 +17,14 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/google_maps_key" />
 
-        <activity
-            android:name="app.activity.ActivityMap"
-            android:label="@string/title_activity_maps" />
-        <activity android:name="app.activity.ActivityPlatos" />
-        <activity
-            android:name="app.activity.ActivityRegistrarUsuario"
-            android:label="SignUp" />
-        <activity
-            android:name="app.activity.ActivityNuevoPlato"
-            android:label="SignUp" />
-        <activity
-            android:name="app.activity.ActivityPedido"
-            android:label="SignUp" />
-        <activity android:name="app.activity.ActivityHome">
+        <activity android:name="app.activity.ActivityMap" android:label="@string/title_activity_maps" />
+        <activity android:name="app.activity.ActivityPlatos" android:label="Platos"/>
+        <activity android:name="app.activity.ActivityRegistrarUsuario" android:label="RegistrarUsuario" />
+        <activity android:name="app.activity.ActivityNuevoPlato" android:label="NuevoPlato" />
+        <activity android:name="app.activity.ActivityPedido" android:label="Pedido" />
+        <activity android:name="app.activity.ActivityHome" android:label="SendMeal">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

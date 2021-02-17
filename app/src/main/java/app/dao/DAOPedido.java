@@ -23,12 +23,12 @@ public interface DAOPedido {
     @Update
     void actualizar(Pedido pedido);
 
-    @Query("SELECT * FROM pedido WHERE id = :id LIMIT 1")
-    Pedido buscar(long id);
+    @Query("SELECT * FROM pedido WHERE idPedido = :idPedido LIMIT 1")
+    Pedido buscar(long idPedido);
 
     @Query("SELECT * FROM pedido")
     List<Pedido> buscarTodos();
 
-    @Query("SELECT pl.* FROM pedidoConPlatos pe, plato pl WHERE pe.idPedido = :idPedido and pe.idPlato=pl.id")
+    @Query("SELECT pl.* FROM pedidoConPlatos pe, plato pl WHERE pe.idPedido = :idPedido and pe.idPlato=pl.idPlato")
     List<Plato> buscarPlatosPedidos(long idPedido);
 }

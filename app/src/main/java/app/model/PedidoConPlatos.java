@@ -1,6 +1,5 @@
 package app.model;
 
-import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -40,15 +39,5 @@ public class PedidoConPlatos implements Serializable{
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    @Override
-    public boolean equals(@Nullable Object obj) {
-        if(this.getId().equals( ((Usuario)obj).getId() )){
-            return true;
-        }
-        else{
-            return false;
-        }
     }
 }
