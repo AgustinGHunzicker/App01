@@ -24,6 +24,7 @@ import SendMeal.app.R;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ActivityRegistrarUsuario extends AppCompatActivity {
 
@@ -129,64 +130,55 @@ public class ActivityRegistrarUsuario extends AppCompatActivity {
         });
 
         /* Acepto los terminos y condiciones si se aceptaron, se habilit el boton de registrar */
-        checkBoxConditions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                btnRegister.setEnabled(checkBoxConditions.isChecked());
-            }
-        });
+        checkBoxConditions.setOnClickListener(view -> btnRegister.setEnabled(checkBoxConditions.isChecked()));
 
         /* Load the years since this year + 12 */
         LocalDateTime localDateTime = LocalDateTime.now();
         int yearNow = localDateTime.getYear();
-        ArrayList years = new ArrayList<>();
+        List<Object> years = new ArrayList<>();
         years.add("");
         for(int i = 0; i < 12; i++) years.add(yearNow + i);
-        ArrayAdapter spinnerAdapterYears = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, years);
+        ArrayAdapter<Object> spinnerAdapterYears = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, years);
         spinnerYear.setAdapter(spinnerAdapterYears);
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnRegister.setOnClickListener(view -> {
+            boolean invalid_space = false;
+            String name = editName.getText().toString();
+            String password = editUserPassword.getText().toString();
+            String passwordCtn = editUserPasswordRepeat.getText().toString();
+            String email = editEmail.getText().toString();
+            String cbu = editCBU.getText().toString();
+            String alias = editAliasCBU.getText().toString();
+            String numberCard = editCardNumber.getText().toString();
+            String numberCCV = editCardCCV.getText().toString();
+            String selectedMonth = spinnerMonth.getSelectedItem().toString();
+            String selectedYear = spinnerYear.getSelectedItem().toString();
 
-                boolean invalid_space = false;
-                String name = editName.getText().toString();
-                String password = editUserPassword.getText().toString();
-                String passwordCtn = editUserPasswordRepeat.getText().toString();
-                String email = editEmail.getText().toString();
-                String cbu = editCBU.getText().toString();
-                String alias = editAliasCBU.getText().toString();
-                String numberCard = editCardNumber.getText().toString();
-                String numberCCV = editCardCCV.getText().toString();
-                String selectedMonth = spinnerMonth.getSelectedItem().toString();
-                String selectedYear = spinnerYear.getSelectedItem().toString();
+            if(name.equals("")) invalid_space = true;
+            if(password.equals("") || !password.equals(passwordCtn)) invalid_space = true;
+            if(!email.contains("@")) invalid_space = true;
+            else if(email.substring(email.lastIndexOf("@")).length() < 3) invalid_space = true;
+            if(!radioBtnCredit.isChecked() && !radioBtnDebit.isChecked()) invalid_space = true;
+            if(numberCard.length() < 16) invalid_space = true;
+            if(numberCCV.length() < 3) invalid_space = true;
+            if(cbu.length() < 22) invalid_space = true;
+            if(alias.length() < 6) invalid_space = true;
+            if(!switchInitLoad.isChecked()) invalid_space = true;
+            else if(seekBarInitCredit.getProgress()==0) invalid_space = true;
+            if(selectedMonth.equals("")||selectedYear.equals("")) invalid_space = true;
+            else{
+                LocalDateTime localDateTime1 = LocalDateTime.now();
+                int m = Integer.parseInt(selectedMonth);
+                Integer y = Integer.parseInt(selectedYear);
+                int mToday = localDateTime1.getMonthValue();
+                Integer yToday = localDateTime1.getYear();
+                if(y.equals(yToday) && mToday > m-3) invalid_space = true;
+            }
 
-                if(name.equals("")) invalid_space = true;
-                if(password.equals("") || !password.equals(passwordCtn)) invalid_space = true;
-                if(!email.contains("@")) invalid_space = true;
-                else if(email.substring(email.lastIndexOf("@")).length() < 3) invalid_space = true;
-                if(!radioBtnCredit.isChecked() && !radioBtnDebit.isChecked()) invalid_space = true;
-                if(numberCard.length() < 16) invalid_space = true;
-                if(numberCCV.length() < 3) invalid_space = true;
-                if(cbu.length() < 22) invalid_space = true;
-                if(alias.length() < 6) invalid_space = true;
-                if(!switchInitLoad.isChecked()) invalid_space = true;
-                else if(seekBarInitCredit.getProgress()==0) invalid_space = true;
-                if(selectedMonth.equals("")||selectedYear.equals("")) invalid_space = true;
-                else{
-                    LocalDateTime localDateTime = LocalDateTime.now();
-                    int m = Integer.parseInt(selectedMonth);
-                    Integer y = Integer.parseInt(selectedYear);
-                    int mToday = localDateTime.getMonthValue();
-                    Integer yToday = localDateTime.getYear();
-                    if(y.equals(yToday) && mToday > m-3) invalid_space = true;
-                }
-
-                if(invalid_space) Toast.makeText(getApplicationContext(),R.string.ToastInvalidSpaces,Toast.LENGTH_LONG).show();
-                else{
-                    //TODO persistir en la base de datos
-                    Toast.makeText(getApplicationContext(),R.string.ToastSuccessfulTransaction,Toast.LENGTH_LONG).show();
-                }
+            if(invalid_space) Toast.makeText(getApplicationContext(),R.string.ToastInvalidSpaces,Toast.LENGTH_LONG).show();
+            else{
+                finish();
+                Toast.makeText(getApplicationContext(),R.string.ToastSuccessfulTransaction,Toast.LENGTH_LONG).show();
             }
         });
     }
