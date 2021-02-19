@@ -29,6 +29,9 @@ public class Plato implements Serializable {
     private String fotoUrl;
 
     public Plato() {
+        titulo = "";
+        descripcion = "";
+        fotoUrl = "";
     }
 
     public Long getIdPlato() {

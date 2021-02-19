@@ -41,7 +41,7 @@ public class ActivityPlatos extends AppCompatActivity implements OnResultCallbac
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new PlatoHolder(this, new ArrayList<Plato>(), false));
+        recyclerView.setAdapter(new PlatoHolder(this, new ArrayList<>(), false));
 
         repository = new AppRepository(this,this);
         repository.buscarPlatos();
