@@ -1,3 +1,87 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <!-- clave de mapa -->
+    <string name="google_maps_key">AIzaSyCuYHwH_F4qzlVLJYDJWIR5FZWS_eN5loA</string>
+    <!-- Pantalla de registro de usuario -->
+    <string name="app_name">SendMeal</string>
+    <string name="labelUserName">Nombre</string>
+    <string name="labelUserPassword">Contraseña</string>
+    <string name="labelUserPasswordRepeat">Repetir Contraseña</string>
+    <string name="labelEmail">Email</string>
+    <string name="labelTypeCard">Tipo de tarjeta:</string>
+    <string name="labelRadioButtonDebit">Debito</string>
+    <string name="labelRadioButtonCredit">Credito</string>
+    <string name="labelCardNumber">Número de tarjeta</string>
+    <string name="labelCardCCV">CCV</string>
+    <string name="labelExpirationDate">Fecha vencimiento:</string>
+    <string-array name="labelMonth">
+        <item>""</item>
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string name="labelCBU">CBU</string>
+    <string name="labelAliasCBU">Alias CBU</string>
+    <string name="labelInitialLoad">Realizar carga inicial</string>
+    <string name="labelInitialCredit">Credito inicial:" " </string>
+    <string name="labelConditions">Acepto los términos y condiciones</string>
+    <string name="labelBtnRegister">Registrar</string>
+    <string name="labelInitLoad">0</string>
+    <string name="ToastInvalidSpaces">Campos no válidos</string>
+    <string name="ToastSuccessfulTransaction">Carga exitosa</string>
+
+    <!-- Pantalla de inicio -->
+    <string name="labelWelcome">Sendmeal-fast!</string>
+
+    <string name="menuRegister">Registarme</string>
+    <string name="menuCreateItem">Crear plato</string>
+    <string name="menuItemsList">Lista de platos</string>ç
+
+    <string name="activityRegister">REGISTRAR</string>
+    <string name="activityCreateItem">CREAR PLATO</string>
+    <string name="activityItemsList">LISTA DE PLATOS</string>
+
+    <!-- Pantalla de nuevo plato -->
+    <string name="labelNewPlate">Nuevo plato</string>
+    <string name="labelTitlePlate">Título</string>
+    <string name="labelDescription">Descripción</string>
+    <string name="labelPrice">Precio</string>
+    <string name="labelCalories">Calorías</string>
+    <string name="btnSave">Guardar</string>
+    <string name="btnPedir">Pedir</string>
+    <string name="ToastInvalidSpacesPlate">Campos no válidos/incompletos</string>
+    <string name="ToastSuccessfulTransactionPlate">El plato ha sido creado con éxito</string>
+    <string name="ToastErrorTransactionPlate">No se ha podido crear el plato</string>
+
+
+    <!-- Pantalla de visualizar los platos -->
+    <string name="btnVer">Ver</string>
+    <string name="newPedido">Nuevo pedido</string>
+
+    <!-- Pantalla de Nuevos Pedidos -->
+    <string name="labelNuevoPedido">Nuevo pedido</string>
+    <string name="address">Dirección de envío</string>
+    <string name="labelSend">Envío</string>
+    <string name="labelTakeAway">Take Away</string>
+    <string name="btnAddPlate">AGREGAR PLATOS A PEDIDO</string>
+    <string name="labelTotalPrice">Precio total: </string>
+    <string name="textRealizarPedido">Realizar pedido </string>
+    <string name="failedOrder">Revisar los campos ingresados</string>
+    <string name="successfulOrder">Pedido exitoso!</string>
+    <string name="lblcantidadproductos">Cantidad productos: </string>
+    <string name="title_activity_maps">Map</string>
+    <string name="btnAddLocation">Agregar Ubicación</string>
+    <string name="upload_img">Subir imagen</string>
+    <string name="uplad_img_icon">uplad_img_icon</string>
+    <string name="camera_button_description">camera button</string>
+    <string name="image_upload_description">image_upload_description</string>
+
 </resources>

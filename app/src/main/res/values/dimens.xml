@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="space_large">16dp</dimen>
+    <dimen name="space_small">8dp</dimen>
+
+    <dimen name="space_for_border_background">4dp</dimen>
+
+    <dimen name="padding_fila_lista">8px</dimen>
+
+    <dimen name="corner_radius">15dp</dimen>
+    <dimen name="card_elevation">5dp</dimen>
+</resources>
